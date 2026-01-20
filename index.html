@@ -319,14 +319,15 @@ document.getElementById('restartButton').onclick = () => {
         )
       }
 
-const savedUser = localStorage.getItem("loggedUser");
+document.addEventListener("DOMContentLoaded", () => {
+  const savedUser = localStorage.getItem("loggedUser");
+  if (savedUser) {
+    showUser(savedUser);
 
-if (savedUser) {
-  showUser(savedUser);
-
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('startView').classList.add('active');
-}
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('startView').classList.add('active');
+  }
+});
 </script>
 
 </body>
