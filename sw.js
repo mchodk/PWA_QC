@@ -1,10 +1,10 @@
 const cacheName = "qc-assistant-v1";
 const assetsToCache = [
-  "/PWA_QC/",
-  "/PWA_QC/index.html",
-  "/PWA_QC/manifest.webmanifest",
-  "/PWA_QC/icon.jpg",
-  "/PWA_QC/icon-512.png",
+  "./",
+  "./index.html",
+  "./manifest.webmanifest",
+  "./icon.jpg",
+  "./icon-512.png",
   "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
 ];
 
