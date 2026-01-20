@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#007BFF">
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LWDO QC assistant with PWA</title>
+
+<style>
+body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background-color: #f2f2f2; }
+.view { display: none; }
+.view.active { display: block; }
+
+.checkbox-group { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+button { background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; width: 100%; margin-bottom: 10px; }
+button:disabled { background-color: #aaa; }
+.center-text { text-align: center; font-size: 20px; margin-bottom: 20px; }
+#startView .center-text:first-of-type { font-size: 28px; font-weight: bold; }
+#startButton { font-size: 22px; padding: 15px 20px; }
+#report { background: white; padding: 15px; border-radius: 10px; }
+.ok { color: green; }
+.nok { color: red; }
+</style>
+</head>
+
+<body>
+
+<!-- START -->
+<div class="view active" id="startView">
+  <div class="center-text">
+    <img src="https://www.lift.pl/images/logo.png" style="max-width:100%; margin-bottom:20px;">
+  </div>
+  <div class="center-text">Zaczynamy</div>
+  <div class="center-text">Wybierz jedną opcję:</div>
+  <div class="checkbox-group" style="background:#e0e0e0;">
+    <label><input type="checkbox" class="startOption" data-target="viewOpt1"> Opcja 1</label><br>
+    <label><input type="checkbox" class="startOption" data-target="viewOpt2"> Opcja 2</label><br>
+    <label><input type="checkbox" class="startOption" data-target="viewOpt3"> Opcja 3</label>
+  </div>
+  <button id="startButton" disabled>Start</button>
+</div>
+
+<!-- OPCJE -->
+<div class="view" id="viewOpt1">
+  <div class="checkbox-group">
+    <label><input type="checkbox" class="cbOpt1"> Sprawdzono 1A</label><br>
+    <label><input type="checkbox" class="cbOpt1"> Sprawdzono 1B</label><br>
+    <label><input type="checkbox" class="cbOpt1"> Sprawdzono 1C</label>
+  </div>
+  <button id="nextOpt1" disabled>Dalej</button>
+</div>
+
+<div class="view" id="viewOpt2">
+  <div class="checkbox-group">
+    <label><input type="checkbox" class="cbOpt2"> Sprawdzono 2A</label><br>
+    <label><input type="checkbox" class="cbOpt2"> Sprawdzono 2B</label><br>
+    <label><input type="checkbox" class="cbOpt2"> Sprawdzono 2C</label>
+  </div>
+  <button id="nextOpt2" disabled>Dalej</button>
+</div>
+
+<div class="view" id="viewOpt3">
+  <div class="checkbox-group">
+    <label><input type="checkbox" class="cbOpt3"> Sprawdzono 3A</label><br>
+    <label><input type="checkbox" class="cbOpt3"> Sprawdzono 3B</label><br>
+    <label><input type="checkbox" class="cbOpt3"> Sprawdzono 3C</label>
+  </div>
+  <button id="nextOpt3" disabled>Dalej</button>
+</div>
+
+<!-- RAPORT -->
+<div class="view" id="endView">
+  <div class="center-text" style="font-size:24px;font-weight:bold;">Raport</div>
+  <div id="report"></div>
+  <button id="downloadPDF">Pobierz PDF</button>
+  <button id="restartButton">Powrót do startu</button>
+</div>
+
+<!-- html2pdf.js -->
+<script src="html2pdf.bundle.min.js"></script>
+
+<script>
+let selectedStartOption = "";
+let selectedGroup = "";
+
+/* START */
+const startOptions = document.querySelectorAll('.startOption');
+const startButton = document.getElementById('startButton');
+
+startOptions.forEach(cb => {
+  cb.addEventListener('change', () => {
+    startOptions.forEach(o => o !== cb && (o.checked = false));
+    startButton.disabled = !cb.checked;
+    selectedStartOption = cb.parentElement.textContent.trim();
+    selectedGroup = cb.dataset.target;
+  });
+});
+
+startButton.onclick = () => {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(selectedGroup).classList.add('active');
+};
+
+/* DALEJ – aktywne gdy choć jeden */
+function enableIfAnyChecked(className, buttonId) {
+  const anyChecked = [...document.querySelectorAll(`.${className}`)].some(cb => cb.checked);
+  document.getElementById(buttonId).disabled = !anyChecked;
+}
+
+['1','2','3'].forEach(n => {
+  document.querySelectorAll(`.cbOpt${n}`).forEach(cb =>
+    cb.addEventListener('change', () => enableIfAnyChecked(`cbOpt${n}`, `nextOpt${n}`))
+  );
+  document.getElementById(`nextOpt${n}`).onclick = showEndView;
+});
+
+/* RAPORT */
+function showEndView() {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('endView').classList.add('active');
+
+  const checkboxes = document.querySelectorAll(
+    selectedGroup === 'viewOpt1' ? '.cbOpt1' :
+    selectedGroup === 'viewOpt2' ? '.cbOpt2' : '.cbOpt3'
+  );
+
+  let html = `<strong>Wybrana opcja:</strong> ${selectedStartOption}<br><br><ul>`;
+  checkboxes.forEach(cb => {
+    html += `<li class="${cb.checked ? 'ok' : 'nok'}">
+      ${cb.checked ? '✔' : '✖'} ${cb.parentElement.textContent.trim()}
+    </li>`;
+  });
+  html += `</ul>`;
+  document.getElementById('report').innerHTML = html;
+}
+
+/* PDF */
+document.getElementById('downloadPDF').onclick = () => {
+  const element = document.getElementById('report');
+  html2pdf().from(element).set({
+    margin: 0.5,
+    filename: 'raport_QC.pdf',
+    html2canvas: { scale: 2 },
+    jsPDF: { orientation: 'portrait', unit: 'in', format: 'letter' }
+  }).save();
+};
+
+/* RESET – działa zawsze */
+document.getElementById('restartButton').onclick = () => {
+  // reset zmiennych
+  selectedStartOption = "";
+  selectedGroup = "";
+
+  // odznacz wszystkie checkboxy
+  document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+
+  // reset przycisków
+  startButton.disabled = true;
+  ['nextOpt1','nextOpt2','nextOpt3','downloadPDF'].forEach(id => {
+    document.getElementById(id).disabled = false; // PDF zawsze aktywny przy nowym raporcie
+  });
+
+  // ukryj wszystkie widoki
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+
+  // wyczyść raport
+  document.getElementById('report').innerHTML = "";
+
+  // pokaż start
+  document.getElementById('startView').classList.add('active');
+};
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log('Service Worker zarejestrowany!'))
+      .catch(err => console.error('Błąd rejestracji SW:', err));
+  });
+}
+</script>
+
+</body>
+</html>
