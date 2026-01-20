@@ -174,8 +174,8 @@ document.getElementById('restartButton').onclick = () => {
 
       if (navigator.serviceWorker) {
         navigator.serviceWorker.register (
-          '/PWA_QC/sw.js',
-          {scope: '/PWA_QC/'}
+          'sw.js',
+          {scope: './'}
         )
       }
 
