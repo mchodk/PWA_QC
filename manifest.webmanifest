@@ -9,9 +9,9 @@
   "theme_color": "#007BFF",
   "icons": [
     {
-      "src": "/PWA_QC/icon-192.png",
+      "src": "/PWA_QC/icon.jpg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/jpg"
     },
     {
       "src": "/PWA_QC/icon-512.png",
