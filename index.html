@@ -139,13 +139,13 @@ function showEndView() {
 /* PDF */
 document.getElementById('downloadPDF').onclick = () => {
   // Pobranie aktualnej daty i czasu
-  const now = new Date();
-  const dateStr = now.getFullYear() + '-' +
-                  String(now.getMonth() + 1).padStart(2, '0') + '-' +
-                  String(now.getDate()).padStart(2, '0') + '_' +
-                  String(now.getHours()).padStart(2, '0') +
-                  String(now.getMinutes()).padStart(2, '0') +
-                  String(now.getSeconds()).padStart(2, '0');
+const now = new Date();
+const yearTwoDigits = String(now.getFullYear()).slice(-2); // "26"
+const dateStr = yearTwoDigits + '-' +
+                String(now.getMonth() + 1).padStart(2, '0') + '-' +
+                String(now.getDate()).padStart(2, '0') + '_' +
+                String(now.getHours()).padStart(2, '0') +
+                String(now.getMinutes()).padStart(2, '0');
 
   // Pobranie elementu raportu
   const element = document.getElementById('report');
