@@ -27,8 +27,30 @@ button:disabled { background-color: #aaa; }
 
 <body>
 
+<!-- LOGIN -->
+<div class="view active" id="loginView">
+  <div class="center-text" style="font-size:28px;font-weight:bold;">Logowanie</div>
+
+  <div class="checkbox-group">
+    <label>Użytkownik:</label><br>
+    <select id="loginUser" style="width:100%; padding:10px; margin-bottom:10px;">
+      <option value="">-- wybierz --</option>
+      <option value="test1">test_user</option>
+      <option value="test2">test_lift</option>
+    </select>
+
+    <label>Hasło:</label><br>
+    <input type="password" id="loginPass" style="width:100%; padding:10px;">
+    <div id="loginError" style="color:red; margin-top:10px; display:none;">
+      Nieprawidłowy użytkownik lub hasło
+    </div>
+  </div>
+
+  <button id="loginButton">Zaloguj</button>
+</div>
+
 <!-- START -->
-<div class="view active" id="startView">
+<div class="view" id="startView">
   <div class="center-text">
     <img src="https://www.lift.pl/images/logo.png" style="max-width:100%; margin-bottom:20px;">
   </div>
@@ -84,6 +106,29 @@ button:disabled { background-color: #aaa; }
 <script>
 let selectedStartOption = "";
 let selectedGroup = "";
+let loggedUser = "";
+
+/* LOGIN */
+const users = {
+  test1: "user",
+  test2: "lift"
+};
+
+document.getElementById('loginButton').onclick = () => {
+  const user = document.getElementById('loginUser').value;
+  const pass = document.getElementById('loginPass').value;
+  const error = document.getElementById('loginError');
+
+  if (users[user] && users[user] === pass) {
+    loggedUser = user; // 👈 zapamiętanie użytkownika
+    error.style.display = "none";
+
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('startView').classList.add('active');
+  } else {
+    error.style.display = "block";
+  }
+};
 
 /* START */
 const startOptions = document.querySelectorAll('.startOption');
@@ -132,7 +177,9 @@ function showEndView() {
       ${cb.checked ? '✔' : '✖'} ${cb.parentElement.textContent.trim()}
     </li>`;
   });
-  html += `</ul>`;
+  html += `</ul>
+<br>
+<strong>Zatwierdził:</strong> ${loggedUser}`;
   document.getElementById('report').innerHTML = html;
 }
 
@@ -153,7 +200,7 @@ const dateStr = yearTwoDigits + '-' +
   // Generowanie PDF z dynamiczną nazwą
   html2pdf().from(element).set({
     margin: 0.5,
-    filename: `test_${dateStr}.pdf`,
+    filename: `raport_${dateStr}.pdf`,
     html2canvas: { scale: 2 },
     jsPDF: { orientation: 'portrait', unit: 'in', format: 'letter' }
   }).save();
