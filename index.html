@@ -138,10 +138,22 @@ function showEndView() {
 
 /* PDF */
 document.getElementById('downloadPDF').onclick = () => {
+  // Pobranie aktualnej daty i czasu
+  const now = new Date();
+  const dateStr = now.getFullYear() + '-' +
+                  String(now.getMonth() + 1).padStart(2, '0') + '-' +
+                  String(now.getDate()).padStart(2, '0') + '_' +
+                  String(now.getHours()).padStart(2, '0') +
+                  String(now.getMinutes()).padStart(2, '0') +
+                  String(now.getSeconds()).padStart(2, '0');
+
+  // Pobranie elementu raportu
   const element = document.getElementById('report');
+
+  // Generowanie PDF z dynamiczną nazwą
   html2pdf().from(element).set({
     margin: 0.5,
-    filename: 'raport_QC.pdf',
+    filename: `raport_QC_${dateStr}.pdf`,
     html2canvas: { scale: 2 },
     jsPDF: { orientation: 'portrait', unit: 'in', format: 'letter' }
   }).save();
