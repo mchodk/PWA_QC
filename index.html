@@ -22,10 +22,49 @@ button:disabled { background-color: #aaa; }
 #report { background: white; padding: 15px; border-radius: 10px; }
 .ok { color: green; }
 .nok { color: red; }
+#userBadge {
+  position: fixed;
+  top: 10px;
+  right: 15px;
+  background: #007BFF;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 16px;          /* rozmiar tekstu nazwy użytkownika */
+  font-weight: bold;
+  z-index: 1000;
+  display: none;             /* ukryte dopóki użytkownik się nie zaloguje */
+  display: flex;
+  align-items: center;       /* wyrównanie pionowe wszystkich elementów */
+  gap: 8px;
+}
+
+#userName {
+  display: inline-block;
+  line-height: 1;           /* wyrównanie tekstu w badge */
+}
+
+#logoutBtn {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 28px;          /* rozmiar ikonki */
+  padding: 0;
+  line-height: 1;           /* wyrównanie ikonki */
+}
+#logoutBtn:hover {
+  color: #ffd700;
+  transform: scale(1.15);
+}
 </style>
 </head>
 
 <body>
+<div id="userBadge">
+  <span id="userName"></span>
+  <button id="logoutBtn" title="Wyloguj" aria-label="Wyloguj">⎋</button>
+</div>
 
 <!-- LOGIN -->
 <div class="view active" id="loginView">
@@ -35,8 +74,8 @@ button:disabled { background-color: #aaa; }
     <label>Użytkownik:</label><br>
     <select id="loginUser" style="width:100%; padding:10px; margin-bottom:10px;">
       <option value="">-- wybierz --</option>
-      <option value="test1">test_user</option>
-      <option value="test2">test_lift</option>
+      <option value="test_user">test_user</option>
+      <option value="test_lift">test_lift</option>
     </select>
 
     <label>Hasło:</label><br>
@@ -110,9 +149,50 @@ let loggedUser = "";
 
 /* LOGIN */
 const users = {
-  test1: "user",
-  test2: "lift"
+  test_user: "user",
+  test_lift: "lift"
 };
+
+function showUser(user) {
+  loggedUser = user;
+  localStorage.setItem("loggedUser", user);
+
+  document.getElementById('userName').textContent = user;
+  document.getElementById('userBadge').style.display = "flex";
+}
+
+function logout() {
+    loggedUser = "";
+  localStorage.removeItem("loggedUser");
+
+  // ukryj badge
+  document.getElementById('userBadge').style.display = "none";
+
+  // reset zmiennych
+  selectedStartOption = "";
+  selectedGroup = "";
+
+  // odznacz WSZYSTKIE checkboxy
+  document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+
+  // reset pól logowania
+  document.getElementById('loginUser').value = "";
+  document.getElementById('loginPass').value = "";
+
+  // wyczyść raport
+  document.getElementById('report').innerHTML = "";
+
+  // przywróć przyciski start / next
+  startButton.disabled = true;
+  ['nextOpt1','nextOpt2','nextOpt3','downloadPDF'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.disabled = false;
+  });
+
+  // pokaż widok logowania
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('loginView').classList.add('active');
+}
 
 document.getElementById('loginButton').onclick = () => {
   const user = document.getElementById('loginUser').value;
@@ -120,15 +200,16 @@ document.getElementById('loginButton').onclick = () => {
   const error = document.getElementById('loginError');
 
   if (users[user] && users[user] === pass) {
-    loggedUser = user; // 👈 zapamiętanie użytkownika
     error.style.display = "none";
-
+  
+    showUser(user); // ✅ JEDYNE właściwe miejsce
+  
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('startView').classList.add('active');
-  } else {
-    error.style.display = "block";
   }
 };
+
+document.getElementById('logoutBtn').onclick = logout;
 
 /* START */
 const startOptions = document.querySelectorAll('.startOption');
@@ -238,6 +319,14 @@ document.getElementById('restartButton').onclick = () => {
         )
       }
 
+const savedUser = localStorage.getItem("loggedUser");
+
+if (savedUser) {
+  showUser(savedUser);
+
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('startView').classList.add('active');
+}
 </script>
 
 </body>
