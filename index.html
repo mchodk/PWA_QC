@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LWDO QC assistant</title>
+<title>QC with PWA</title>
 
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#007BFF">
+  <link rel="canonical" href="https://mchodk.github.io/PWA_QC/" />
+  <link rel="manifest" href="/PWA_QC/manifest.webmanifest">
 
 <style>
 body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background-color: #f2f2f2; }
@@ -171,6 +171,14 @@ document.getElementById('restartButton').onclick = () => {
   // pokaż start
   document.getElementById('startView').classList.add('active');
 };
+
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register (
+          '/PWA_QC/sw.js',
+          {scope: '/PWA_QC/'}
+        )
+      }
+
 </script>
 
 </body>

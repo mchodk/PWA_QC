@@ -1,7 +1,8 @@
 {
   "name": "LWDO QC Assistant",
   "short_name": "QC Assistant",
-  "description": "Asystent QC LWDO",
+  "description": "Asystent QC LWDO desc",
+  "scope": "/PWA_QC/index.html",
   "start_url": "/PWA_QC/index.html",
   "display": "standalone",
   "background_color": "#f2f2f2",
