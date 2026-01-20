@@ -1,0 +1,21 @@
+{
+  "name": "LWDO QC Assistant",
+  "short_name": "QC Assistant",
+  "description": "Asystent QC LWDO",
+  "start_url": "/PWA_QC/index.html",
+  "display": "standalone",
+  "background_color": "#f2f2f2",
+  "theme_color": "#007BFF",
+  "icons": [
+    {
+      "src": "/PWA_QC/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/PWA_QC/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

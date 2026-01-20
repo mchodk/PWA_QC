@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LWDO QC assistant with PWA</title>
+<title>LWDO QC assistant</title>
 
-<!-- Manifest PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#007BFF">
 
@@ -13,6 +12,7 @@
 body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background-color: #f2f2f2; }
 .view { display: none; }
 .view.active { display: block; }
+
 .checkbox-group { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
 button { background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; width: 100%; margin-bottom: 10px; }
 button:disabled { background-color: #aaa; }
@@ -30,7 +30,7 @@ button:disabled { background-color: #aaa; }
 <!-- START -->
 <div class="view active" id="startView">
   <div class="center-text">
-    <img src="icon.png" style="max-width:100%; margin-bottom:20px;">
+    <img src="https://www.lift.pl/images/logo.png" style="max-width:100%; margin-bottom:20px;">
   </div>
   <div class="center-text">Zaczynamy</div>
   <div class="center-text">Wybierz jedną opcję:</div>
@@ -79,7 +79,7 @@ button:disabled { background-color: #aaa; }
 </div>
 
 <!-- html2pdf.js -->
-<script src="html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
 let selectedStartOption = "";
@@ -147,26 +147,31 @@ document.getElementById('downloadPDF').onclick = () => {
   }).save();
 };
 
-/* RESET */
+/* RESET – działa zawsze */
 document.getElementById('restartButton').onclick = () => {
+  // reset zmiennych
   selectedStartOption = "";
   selectedGroup = "";
+
+  // odznacz wszystkie checkboxy
   document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+
+  // reset przycisków
   startButton.disabled = true;
-  ['nextOpt1','nextOpt2','nextOpt3'].forEach(id => document.getElementById(id).disabled = true);
+  ['nextOpt1','nextOpt2','nextOpt3','downloadPDF'].forEach(id => {
+    document.getElementById(id).disabled = false; // PDF zawsze aktywny przy nowym raporcie
+  });
+
+  // ukryj wszystkie widoki
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+
+  // wyczyść raport
   document.getElementById('report').innerHTML = "";
+
+  // pokaż start
   document.getElementById('startView').classList.add('active');
 };
-
-/* REGISTER SERVICE WORKER */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('PWA_QC/sw.js')
-      .then(() => console.log('Service Worker zarejestrowany!'))
-      .catch(err => console.error('Błąd rejestracji SW:', err));
-  });
-}
 </script>
+
 </body>
 </html>
