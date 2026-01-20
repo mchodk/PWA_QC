@@ -162,7 +162,7 @@ document.getElementById('restartButton').onclick = () => {
 /* REGISTER SERVICE WORKER */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
+    navigator.serviceWorker.register('PWA_QC/sw.js')
       .then(() => console.log('Service Worker zarejestrowany!'))
       .catch(err => console.error('Błąd rejestracji SW:', err));
   });

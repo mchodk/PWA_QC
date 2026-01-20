@@ -1,7 +1,8 @@
 {
   "name": "QC Assistant",
   "short_name": "QC",
-  "start_url": "./index.html",
+  "start_url": "/PWA_QC/",
+  "scope": "/PWA_QC/",
   "display": "standalone",
   "background_color": "#f2f2f2",
   "theme_color": "#007BFF",
