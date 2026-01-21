@@ -9,6 +9,9 @@
   <link rel="manifest" href="/PWA_QC/manifest.webmanifest">
 
 <style>
+* {
+  box-sizing: border-box;
+}
 body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background-color: #f2f2f2; }
 .view { display: none; }
 .view.active { display: block; }
@@ -100,6 +103,14 @@ button:disabled { background-color: #aaa; }
     <label><input type="checkbox" class="startOption" data-target="viewOpt2"> Opcja 2</label><br>
     <label><input type="checkbox" class="startOption" data-target="viewOpt3"> Opcja 3</label>
   </div>
+  
+  <!-- PODOPCJE DLA OPCJI 2 -->
+  <div class="checkbox-group" id="subOptions2" style="display:none; background:#d0f0ff;">
+  <div class="center-text">Wybierz podopcję:</div>
+  <label><input type="checkbox" class="subOption2" data-value="A"> Podopcja A</label><br>
+  <label><input type="checkbox" class="subOption2" data-value="B"> Podopcja B</label>
+</div>
+  
   <button id="startButton" disabled>Start</button>
 </div>
 
@@ -110,7 +121,7 @@ button:disabled { background-color: #aaa; }
     <label><input type="checkbox" class="cbOpt1"> Sprawdzono 1B</label><br>
     <label><input type="checkbox" class="cbOpt1"> Sprawdzono 1C</label>
   </div>
-  <button id="nextOpt1" disabled>Dalej</button>
+  <button id="nextOpt1">Dalej</button>
 </div>
 
 <div class="view" id="viewOpt2">
@@ -118,8 +129,11 @@ button:disabled { background-color: #aaa; }
     <label><input type="checkbox" class="cbOpt2"> Sprawdzono 2A</label><br>
     <label><input type="checkbox" class="cbOpt2"> Sprawdzono 2B</label><br>
     <label><input type="checkbox" class="cbOpt2"> Sprawdzono 2C</label>
+    
+    <!-- DYNAMICZNE CHECKBOXY POD OPCJĄ 2 -->
+    <div id="extraOpt2"></div>
   </div>
-  <button id="nextOpt2" disabled>Dalej</button>
+  <button id="nextOpt2">Dalej</button>
 </div>
 
 <div class="view" id="viewOpt3">
@@ -128,7 +142,7 @@ button:disabled { background-color: #aaa; }
     <label><input type="checkbox" class="cbOpt3"> Sprawdzono 3B</label><br>
     <label><input type="checkbox" class="cbOpt3"> Sprawdzono 3C</label>
   </div>
-  <button id="nextOpt3" disabled>Dalej</button>
+  <button id="nextOpt3">Dalej</button>
 </div>
 
 <!-- RAPORT -->
@@ -175,6 +189,10 @@ function logout() {
   // odznacz WSZYSTKIE checkboxy
   document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
 
+  // ukryj podopcje Opcji 2
+  subOptions2Div.style.display = 'none';
+  subOptions2.forEach(s => s.checked = false);
+
   // reset pól logowania
   document.getElementById('loginUser').value = "";
   document.getElementById('loginPass').value = "";
@@ -202,38 +220,80 @@ document.getElementById('loginButton').onclick = () => {
   if (users[user] && users[user] === pass) {
     error.style.display = "none";
   
-    showUser(user); // ✅ JEDYNE właściwe miejsce
+    showUser(user); 
   
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('startView').classList.add('active');
+  }else {
+    error.style.display = "block"; //  pokaż błąd
   }
 };
 
 document.getElementById('logoutBtn').onclick = logout;
 
-/* START */
+// === START OPTIONS I PODOPCJE OPCJI 2 ===
 const startOptions = document.querySelectorAll('.startOption');
 const startButton = document.getElementById('startButton');
+const subOptions2Div = document.getElementById('subOptions2');
+const subOptions2 = document.querySelectorAll('.subOption2');
 
 startOptions.forEach(cb => {
   cb.addEventListener('change', () => {
+    // odznacz inne opcje
     startOptions.forEach(o => o !== cb && (o.checked = false));
-    startButton.disabled = !cb.checked;
+
     selectedStartOption = cb.parentElement.textContent.trim();
     selectedGroup = cb.dataset.target;
+
+    // Start zawsze aktywny jeśli zaznaczono opcję
+    startButton.disabled = !cb.checked;
+
+    if (selectedGroup === 'viewOpt2' && cb.checked) {
+      // Opcja 2 zaznaczona → pokaż podopcje
+      subOptions2Div.style.display = 'block';
+    } else {
+      // Opcja 2 odznaczona lub inna opcja → ukryj podopcje
+      subOptions2Div.style.display = 'none';
+      subOptions2.forEach(s => s.checked = false);
+    }
   });
 });
 
+// obsługa podopcji Opcji 2
+subOptions2.forEach(s => {
+  s.addEventListener('change', () => {
+    // tylko jedna podopcja może być zaznaczona
+    subOptions2.forEach(o => o !== s && (o.checked = false));
+    if (s.checked) selectedStartOption = `Opcja 2 - Podopcja ${s.dataset.value}`;
+    else selectedStartOption = 'Opcja 2';
+  });
+});
+
+// przycisk Start
 startButton.onclick = () => {
+  // przed zmianą widoku
+  if (selectedGroup === 'viewOpt2') {
+    const extraDiv = document.getElementById('extraOpt2');
+    extraDiv.innerHTML = ''; // wyczyść poprzednie checkboxy
+
+    if (selectedStartOption.includes('Podopcja A')) {
+      extraDiv.innerHTML = `
+        <label><input type="checkbox" class="extraOpt2"> Opcja A1</label><br>
+        <label><input type="checkbox" class="extraOpt2"> Opcja A2</label>
+      `;
+    } else if (selectedStartOption.includes('Podopcja B')) {
+      extraDiv.innerHTML = `
+        <label><input type="checkbox" class="extraOpt2"> Opcja B1</label><br>
+        <label><input type="checkbox" class="extraOpt2"> Opcja B2</label>
+      `;
+    }
+  }
+
+  // pokaż wybrany widok
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(selectedGroup).classList.add('active');
 };
 
-/* DALEJ – aktywne gdy choć jeden */
-function enableIfAnyChecked(className, buttonId) {
-  const anyChecked = [...document.querySelectorAll(`.${className}`)].some(cb => cb.checked);
-  document.getElementById(buttonId).disabled = !anyChecked;
-}
 
 ['1','2','3'].forEach(n => {
   document.querySelectorAll(`.cbOpt${n}`).forEach(cb =>
@@ -247,10 +307,15 @@ function showEndView() {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('endView').classList.add('active');
 
-  const checkboxes = document.querySelectorAll(
-    selectedGroup === 'viewOpt1' ? '.cbOpt1' :
-    selectedGroup === 'viewOpt2' ? '.cbOpt2' : '.cbOpt3'
-  );
+let checkboxes;
+if (selectedGroup === 'viewOpt1') {
+  checkboxes = document.querySelectorAll('.cbOpt1');
+} else if (selectedGroup === 'viewOpt2') {
+  // zbierz standardowe cbOpt2 + dynamiczne extraOpt2
+  checkboxes = document.querySelectorAll('.cbOpt2, .extraOpt2');
+} else {
+  checkboxes = document.querySelectorAll('.cbOpt3');
+}
 
   let html = `<strong>Wybrana opcja:</strong> ${selectedStartOption}<br><br><ul>`;
   checkboxes.forEach(cb => {
@@ -295,6 +360,10 @@ document.getElementById('restartButton').onclick = () => {
 
   // odznacz wszystkie checkboxy
   document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+
+  // ukryj podopcje Opcji 2
+  subOptions2Div.style.display = 'none';
+  subOptions2.forEach(s => s.checked = false);
 
   // reset przycisków
   startButton.disabled = true;
