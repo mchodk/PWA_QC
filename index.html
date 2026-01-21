@@ -101,7 +101,8 @@ button:disabled { background-color: #aaa; }
   <div class="checkbox-group" style="background:#e0e0e0;">
     <label><input type="checkbox" class="startOption" data-target="viewOpt1"> Opcja 1</label><br>
     <label><input type="checkbox" class="startOption" data-target="viewOpt2"> Opcja 2</label><br>
-    <label><input type="checkbox" class="startOption" data-target="viewOpt3"> Opcja 3</label>
+    <label><input type="checkbox" class="startOption" data-target="viewOpt3"> Opcja 3</label><br>
+    <label><input type="checkbox" class="startOption" data-target="viewOpt4"> Opcja 4</label>
   </div>
   
   <!-- PODOPCJE DLA OPCJI 2 -->
@@ -138,11 +139,20 @@ button:disabled { background-color: #aaa; }
 
 <div class="view" id="viewOpt3">
   <div class="checkbox-group">
-    <label><input type="checkbox" class="cbOpt3"> Sprawdzono 3A</label><br>
-    <label><input type="checkbox" class="cbOpt3"> Sprawdzono 3B</label><br>
-    <label><input type="checkbox" class="cbOpt3"> Sprawdzono 3C</label>
+    <label id="label3A"><input type="checkbox" class="cbOpt3" id="cb3A"> Sprawdzono 3A</label>
+    <label id="label3B" style="display:none;"><input type="checkbox" class="cbOpt3" id="cb3B"> Sprawdzono 3B</label>
+    <label id="label3C" style="display:none;"><input type="checkbox" class="cbOpt3" id="cb3C"> Sprawdzono 3C</label>
   </div>
   <button id="nextOpt3">Dalej</button>
+</div>
+
+<div class="view" id="viewOpt4">
+  <div class="checkbox-group">
+    <label><input type="checkbox" class="cbOpt4"> Sprawdzono 4A</label><br>
+    <label><input type="checkbox" class="cbOpt4"> Sprawdzono 4B</label><br>
+    <label><input type="checkbox" class="cbOpt4"> Sprawdzono 4C</label>
+  </div>
+  <button id="nextOpt4">Dalej</button>
 </div>
 
 <!-- RAPORT -->
@@ -225,7 +235,7 @@ document.getElementById('loginButton').onclick = () => {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('startView').classList.add('active');
   }else {
-    error.style.display = "block"; // ✅ pokaż błąd
+    error.style.display = "block"; // pokaż błąd
   }
 };
 
@@ -340,7 +350,71 @@ cb1C.addEventListener('change', () => {
   nextOpt1.disabled = !cb1C.checked;
 });
 
-['1','2','3'].forEach(n => {
+// === SEKWENCYJNE CHECKBOXY OPCJI 3 ===
+const cb3A = document.getElementById('cb3A');
+const cb3B = document.getElementById('cb3B');
+const cb3C = document.getElementById('cb3C');
+const nextOpt3 = document.getElementById('nextOpt3');
+const label3A = document.getElementById('label3A');
+const label3B = document.getElementById('label3B');
+const label3C = document.getElementById('label3C');
+
+let step3 = 0; // krok w sekwencji 3A->3B->3C
+let checkedSteps3 = []; // pamiętamy zaznaczone kroki
+
+function resetViewOpt3() {
+  label3A.style.display = 'block';
+  label3B.style.display = 'none';
+  label3C.style.display = 'none';
+  cb3A.checked = false;
+  cb3B.checked = false;
+  cb3C.checked = false;
+  step3 = 0;
+  checkedSteps3 = [];
+  nextOpt3.disabled = true; // szary przycisk na start
+}
+
+// Przy starcie: Dalej nieaktywny
+nextOpt3.disabled = true;
+
+// Funkcja do aktywowania/dezaktywowania przycisku w zależności od kroku
+function updateNextOpt3State() {
+  if(step3 === 0) nextOpt3.disabled = !cb3A.checked;
+  else if(step3 === 1) nextOpt3.disabled = !cb3B.checked;
+  else if(step3 === 2) nextOpt3.disabled = !cb3C.checked;
+}
+
+// Obsługa zmiany checkboxów – przy zaznaczeniu przycisk aktywny
+[cb3A, cb3B, cb3C].forEach(cb => {
+  cb.addEventListener('change', updateNextOpt3State);
+});
+
+// Kliknięcie Dalej – przechodzimy po krokach
+nextOpt3.addEventListener('click', () => {
+  if(step3 === 0 && cb3A.checked) {
+    checkedSteps3.push('3A');       // zapamiętaj krok
+    label3A.style.display = 'none';
+    label3B.style.display = 'block';
+    cb3A.checked = false;           // odznacz w UI
+    step3++;
+    updateNextOpt3State();
+  } else if(step3 === 1 && cb3B.checked) {
+    checkedSteps3.push('3B');       // zapamiętaj krok
+    label3B.style.display = 'none';
+    label3C.style.display = 'block';
+    cb3B.checked = false;
+    step3++;
+    updateNextOpt3State();
+  } else if(step3 === 2 && cb3C.checked) {
+    checkedSteps3.push('3C');       // zapamiętaj krok
+    cb3C.checked = false;
+    showEndView();                  // pokaz raport
+    step3 = 0;
+    resetViewOpt3();
+  }
+});
+
+['1','2','4'].forEach(n => {
   document.querySelectorAll(`.cbOpt${n}`).forEach(cb =>
     cb.addEventListener('change', () => enableIfAnyChecked(`cbOpt${n}`, `nextOpt${n}`))
   );
@@ -352,25 +426,40 @@ function showEndView() {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('endView').classList.add('active');
 
-let checkboxes;
-if (selectedGroup === 'viewOpt1') {
-  checkboxes = document.querySelectorAll('.cbOpt1');
-} else if (selectedGroup === 'viewOpt2') {
-  // zbierz standardowe cbOpt2 + dynamiczne extraOpt2
-  checkboxes = document.querySelectorAll('.cbOpt2, .extraOpt2');
-} else {
-  checkboxes = document.querySelectorAll('.cbOpt3');
-}
+  let checkboxes;
+
+  if (selectedGroup === 'viewOpt1') {
+    checkboxes = document.querySelectorAll('.cbOpt1');
+  } else if (selectedGroup === 'viewOpt2') {
+    // zbierz standardowe cbOpt2 + dynamiczne extraOpt2
+    checkboxes = document.querySelectorAll('.cbOpt2, .extraOpt2');
+  } else if (selectedGroup === 'viewOpt3') {
+    checkboxes = ['3A','3B','3C'].map(id => ({
+      id,
+      checked: checkedSteps3.includes(id),
+      label: document.getElementById('label' + id).textContent.trim()
+    }));
+  } else if (selectedGroup === 'viewOpt4') {
+    checkboxes = document.querySelectorAll('.cbOpt4');
+  }
 
   let html = `<strong>Wybrana opcja:</strong> ${selectedStartOption}<br><br><ul>`;
-  checkboxes.forEach(cb => {
+  
+checkboxes.forEach(cb => {
+  if (cb.hasOwnProperty('checked') && cb.hasOwnProperty('label')) {
+    // Opcja 3 – obiekt z id i checked
+    html += `<li class="${cb.checked ? 'ok' : 'nok'}">
+      ${cb.checked ? '✔' : '✖'} ${cb.label}
+    </li>`;
+  } else {
+    // pozostałe opcje – DOM input checkbox
     html += `<li class="${cb.checked ? 'ok' : 'nok'}">
       ${cb.checked ? '✔' : '✖'} ${cb.parentElement.textContent.trim()}
     </li>`;
-  });
-  html += `</ul>
-<br>
-<strong>Zatwierdził:</strong> ${loggedUser}`;
+  }
+});
+
+  html += `</ul><br><strong>Zatwierdził:</strong> ${loggedUser}`;
   document.getElementById('report').innerHTML = html;
 }
 
@@ -409,6 +498,16 @@ document.getElementById('restartButton').onclick = () => {
   // ukryj podopcje Opcji 2
   subOptions2Div.style.display = 'none';
   subOptions2.forEach(s => s.checked = false);
+  
+  // Reset Opcji 3 sekwencyjnej
+  label3A.style.display = 'block';
+  label3B.style.display = 'none';
+  label3C.style.display = 'none';
+  cb3A.checked = false;
+  cb3B.checked = false;
+  cb3C.checked = false;
+  step3 = 0;
+  
 
   // reset przycisków
   startButton.disabled = true;
