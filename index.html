@@ -312,6 +312,9 @@ startButton.onclick = () => {
       `;
     }
   }
+  if(selectedGroup === 'viewOpt3') {
+    resetViewOpt3();
+  }
 
   // pokaż wybrany widok
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -371,7 +374,7 @@ function resetViewOpt3() {
   cb3C.checked = false;
   step3 = 0;
   checkedSteps3 = [];
-  nextOpt3.disabled = true; // szary przycisk na start
+  nextOpt3.disabled = true; // przycisk szary
 }
 
 // Przy starcie: Dalej nieaktywny
