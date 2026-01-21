@@ -117,9 +117,9 @@ button:disabled { background-color: #aaa; }
 <!-- OPCJE -->
 <div class="view" id="viewOpt1">
   <div class="checkbox-group">
-    <label><input type="checkbox" class="cbOpt1"> Sprawdzono 1A</label><br>
-    <label><input type="checkbox" class="cbOpt1"> Sprawdzono 1B</label><br>
-    <label><input type="checkbox" class="cbOpt1"> Sprawdzono 1C</label>
+    <label><input type="checkbox" class="cbOpt1" id="cb1A"> Sprawdzono 1A</label>
+    <label style="display:none;"><input type="checkbox" class="cbOpt1" id="cb1B"> Sprawdzono 1B</label>
+    <label style="display:none;"><input type="checkbox" class="cbOpt1" id="cb1C"> Sprawdzono 1C</label>
   </div>
   <button id="nextOpt1">Dalej</button>
 </div>
@@ -225,7 +225,7 @@ document.getElementById('loginButton').onclick = () => {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('startView').classList.add('active');
   }else {
-    error.style.display = "block"; //  pokaż błąd
+    error.style.display = "block"; // ✅ pokaż błąd
   }
 };
 
@@ -259,6 +259,16 @@ startOptions.forEach(cb => {
   });
 });
 
+//reset widocznosci przy ocji 1
+function resetViewOpt1() {
+  cb1A.checked = false;
+  cb1B.checked = false;
+  cb1C.checked = false;
+
+  cb1B.parentElement.style.display = 'none';
+  cb1C.parentElement.style.display = 'none';
+}
+
 // obsługa podopcji Opcji 2
 subOptions2.forEach(s => {
   s.addEventListener('change', () => {
@@ -272,6 +282,10 @@ subOptions2.forEach(s => {
 // przycisk Start
 startButton.onclick = () => {
   // przed zmianą widoku
+    if(selectedGroup === 'viewOpt1') {
+    resetViewOpt1(); // reset sekwencyjnych checkboxów
+  }
+  
   if (selectedGroup === 'viewOpt2') {
     const extraDiv = document.getElementById('extraOpt2');
     extraDiv.innerHTML = ''; // wyczyść poprzednie checkboxy
@@ -294,6 +308,37 @@ startButton.onclick = () => {
   document.getElementById(selectedGroup).classList.add('active');
 };
 
+// === SEKWENCYJNE CHECKBOXY DLA OPCJI 1 ===
+const cb1A = document.getElementById('cb1A');
+const cb1B = document.getElementById('cb1B');
+const cb1C = document.getElementById('cb1C');
+const nextOpt1 = document.getElementById('nextOpt1');
+
+cb1A.addEventListener('change', () => {
+  if (cb1A.checked) {
+    cb1B.parentElement.style.display = 'block'; // pokaż 1B
+  } else {
+    cb1B.checked = false;
+    cb1C.checked = false;
+    cb1B.parentElement.style.display = 'none'; // ukryj 1B
+    cb1C.parentElement.style.display = 'none'; // ukryj 1C
+  }
+});
+
+cb1B.addEventListener('change', () => {
+  if (cb1B.checked) {
+    cb1C.parentElement.style.display = 'block'; // pokaż 1C
+  } else {
+    cb1C.checked = false;
+    cb1C.parentElement.style.display = 'none'; // ukryj 1C
+  }
+});
+
+// Opcjonalnie, jeśli chcesz zablokować Dalej do czasu zaznaczenia ostatniego:
+nextOpt1.disabled = true;
+cb1C.addEventListener('change', () => {
+  nextOpt1.disabled = !cb1C.checked;
+});
 
 ['1','2','3'].forEach(n => {
   document.querySelectorAll(`.cbOpt${n}`).forEach(cb =>
