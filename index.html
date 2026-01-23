@@ -155,6 +155,26 @@ button:disabled { background-color: #aaa; }
   <button id="nextOpt4">Dalej</button>
 </div>
 
+<!-- NUMERY SERYJNE MODUŁÓW -->
+<div class="view" id="serialView">
+  <div class="checkbox-group">
+    <div class="center-text" style="font-size:22px;font-weight:bold;">
+      Numery seryjne modułów
+    </div>
+
+    <div id="serialContainer">
+      <input type="text"
+             class="serialField"
+             placeholder="Wpisz numer seryjny"
+             style="width:100%; padding:10px; font-size:16px; margin-bottom:10px;">
+    </div>
+
+    <button id="addSerialField">+</button>
+  </div>
+
+  <button id="nextSerial">Dalej</button>
+</div>
+
 <!-- RAPORT -->
 <div class="view" id="endView">
   <div class="center-text" style="font-size:24px;font-weight:bold;">Raport</div>
@@ -163,9 +183,8 @@ button:disabled { background-color: #aaa; }
   <button id="restartButton">Powrót do startu</button>
 </div>
 
-<!-- html2pdf.js 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- html2pdf.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
 let selectedStartOption = "";
@@ -203,6 +222,18 @@ function logout() {
   // ukryj podopcje Opcji 2
   subOptions2Div.style.display = 'none';
   subOptions2.forEach(s => s.checked = false);
+  
+  // reset pól numerów seryjnych
+  const container = document.getElementById('serialContainer');
+  if (container) {
+    container.innerHTML = `
+      <input type="text"
+             class="serialField"
+             placeholder="Wpisz numer seryjny"
+             style="width:100%; padding:10px; font-size:16px; margin-bottom:10px;">
+    `;
+  }
+  
 
   // reset pól logowania
   document.getElementById('loginUser').value = "";
@@ -418,12 +449,20 @@ nextOpt3.addEventListener('click', () => {
   }
 });
 
-['1','2','4'].forEach(n => {
-  document.querySelectorAll(`.cbOpt${n}`).forEach(cb =>
-    cb.addEventListener('change', () => enableIfAnyChecked(`cbOpt${n}`, `nextOpt${n}`))
-  );
-  document.getElementById(`nextOpt${n}`).onclick = showEndView;
-});
+
+// Opcja 1
+document.getElementById('nextOpt1').onclick = showEndView;
+
+// Opcja 2
+document.getElementById('nextOpt2').onclick = showEndView;
+
+/*numery seryjne*/
+document.getElementById('nextOpt4').onclick = () => {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('serialView').classList.add('active');
+};
+
+document.getElementById('nextSerial').onclick = showEndView;
 
 /* RAPORT */
 function showEndView() {
@@ -463,57 +502,45 @@ checkboxes.forEach(cb => {
   }
 });
 
+  if (selectedGroup === 'viewOpt4') {
+  const fields = document.querySelectorAll('.serialField');
+  const values = [...fields]
+    .map(f => f.value.trim())
+    .filter(v => v);
+
+  if (values.length) {
+    html += `<br><strong>Numery seryjne modułów:</strong><br>`;
+    values.forEach(v => {
+      html += `${v}<br>`;
+    });
+  }
+}
+  
   html += `</ul><br><strong>Zatwierdził:</strong> ${loggedUser}`;
   document.getElementById('report').innerHTML = html;
 }
 
 /* PDF */
 document.getElementById('downloadPDF').onclick = () => {
-  // Pobranie referencji do jsPDF
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+  // Pobranie aktualnej daty i czasu
+const now = new Date();
+const yearTwoDigits = String(now.getFullYear()).slice(-2); // "26"
+const dateStr = yearTwoDigits + '-' +
+                String(now.getMonth() + 1).padStart(2, '0') + '-' +
+                String(now.getDate()).padStart(2, '0') + '_' +
+                String(now.getHours()).padStart(2, '0') +
+                String(now.getMinutes()).padStart(2, '0');
 
-  // Dodanie tekstu
-  doc.setFontSize(16);
-  doc.text(`Wybrana opcja: ${selectedStartOption}`, 10, 20);
+  // Pobranie elementu raportu
+  const element = document.getElementById('report');
 
-  let y = 30;
-  let checkboxes;
-
-  if (selectedGroup === 'viewOpt1') {
-    checkboxes = document.querySelectorAll('.cbOpt1');
-  } else if (selectedGroup === 'viewOpt2') {
-    checkboxes = document.querySelectorAll('.cbOpt2, .extraOpt2');
-  } else if (selectedGroup === 'viewOpt3') {
-    checkboxes = ['3A','3B','3C'].map(id => ({
-      id,
-      checked: checkedSteps3.includes(id),
-      label: document.getElementById('label' + id).textContent.trim()
-    }));
-  } else if (selectedGroup === 'viewOpt4') {
-    checkboxes = document.querySelectorAll('.cbOpt4');
-  }
-
-  checkboxes.forEach(cb => {
-    if (cb.hasOwnProperty('checked') && cb.hasOwnProperty('label')) {
-      doc.text(`${cb.checked ? '✔' : '✖'} ${cb.label}`, 10, y);
-    } else {
-      doc.text(`${cb.checked ? '✔' : '✖'} ${cb.parentElement.textContent.trim()}`, 10, y);
-    }
-    y += 10;
-  });
-
-  doc.text(`Zatwierdził: ${loggedUser}`, 10, y + 10);
-
-  const now = new Date();
-  const yearTwoDigits = String(now.getFullYear()).slice(-2);
-  const dateStr = yearTwoDigits + '-' +
-                  String(now.getMonth() + 1).padStart(2, '0') + '-' +
-                  String(now.getDate()).padStart(2, '0') + '_' +
-                  String(now.getHours()).padStart(2, '0') +
-                  String(now.getMinutes()).padStart(2, '0');
-
-  doc.save(`raport_${dateStr}.pdf`);
+  // Generowanie PDF z dynamiczną nazwą
+  html2pdf().from(element).set({
+    margin: 0.5,
+    filename: `raport_${dateStr}.pdf`,
+    html2canvas: { scale: 2 },
+    jsPDF: { orientation: 'portrait', unit: 'in', format: 'letter' }
+  }).save();
 };
 
 /* RESET – działa zawsze */
@@ -544,6 +571,17 @@ document.getElementById('restartButton').onclick = () => {
   ['nextOpt1','nextOpt2','nextOpt3','downloadPDF'].forEach(id => {
     document.getElementById(id).disabled = false; // PDF zawsze aktywny przy nowym raporcie
   });
+  
+  // reset pól numerów seryjnych
+  const container = document.getElementById('serialContainer');
+  if (container) {
+    container.innerHTML = `
+      <input type="text"
+             class="serialField"
+             placeholder="Wpisz numer seryjny"
+             style="width:100%; padding:10px; font-size:16px; margin-bottom:10px;">
+    `;
+  }
 
   // ukryj wszystkie widoki
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -571,6 +609,23 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('startView').classList.add('active');
   }
 });
+
+document.getElementById('addSerialField').onclick = () => {
+  const container = document.getElementById('serialContainer');
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'serialField';
+  input.placeholder = 'Wpisz numer seryjny';
+  input.style.width = '100%';
+  input.style.padding = '10px';
+  input.style.fontSize = '16px';
+  input.style.marginBottom = '10px';
+
+  container.appendChild(input);
+};
+
+
 </script>
 
 </body>
