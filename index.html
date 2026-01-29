@@ -33,18 +33,18 @@ button:disabled { background-color: #aaa; }
   color: white;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 16px;          /* rozmiar tekstu nazwy użytkownika */
+  font-size: 16px;
   font-weight: bold;
   z-index: 1000;
-  display: none;             /* ukryte dopóki użytkownik się nie zaloguje */
+  display: none;
   display: flex;
-  align-items: center;       /* wyrównanie pionowe wszystkich elementów */
+  align-items: center;
   gap: 8px;
 }
 
 #userName {
   display: inline-block;
-  line-height: 1;           /* wyrównanie tekstu w badge */
+  line-height: 1;
 }
 
 #logoutBtn {
@@ -52,9 +52,9 @@ button:disabled { background-color: #aaa; }
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 28px;          /* rozmiar ikonki */
+  font-size: 28px;
   padding: 0;
-  line-height: 1;           /* wyrównanie ikonki */
+  line-height: 1;
 }
 #logoutBtn:hover {
   color: #ffd700;
@@ -102,7 +102,8 @@ button:disabled { background-color: #aaa; }
     <label><input type="checkbox" class="startOption" data-target="viewOpt1"> Opcja 1</label><br>
     <label><input type="checkbox" class="startOption" data-target="viewOpt2"> Opcja 2</label><br>
     <label><input type="checkbox" class="startOption" data-target="viewOpt3"> Opcja 3</label><br>
-    <label><input type="checkbox" class="startOption" data-target="viewOpt4"> Opcja 4</label>
+    <label><input type="checkbox" class="startOption" data-target="viewOpt4"> Opcja 4</label><br>
+    <label><input type="checkbox" class="startOption" data-target="viewLB04_1"> LB-04</label>
   </div>
   
   <!-- PODOPCJE DLA OPCJI 2 -->
@@ -153,6 +154,151 @@ button:disabled { background-color: #aaa; }
     <label><input type="checkbox" class="cbOpt4"> Sprawdzono 4C</label>
   </div>
   <button id="nextOpt4">Dalej</button>
+</div>
+
+<!-- LB-04 SCREENS -->
+<div class="view" id="viewLB04_1">
+  <div class="checkbox-group">
+    <div class="center-text" style="font-size:22px;font-weight:bold;">Przygotowanie stanowiska</div>
+    <label><input type="checkbox" class="cbLB04_1" id="cbLB04_1A"> Ustawić Szafę Sterowania na wózku transportowym i wyregulować wysokość.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1B"> Sprawdzić wizualnie estetykę i prowadzenie przewodów.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1C"> Sprawdzić mechanicznie dokręcenie wszystkich połączeń.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1D"> Ustawić Kasetę Jazdy Kontrolnej na stoliku.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1E"> Sprawdzić kompletność akcesoriów zgodnie z dokumentacją.(np kasetka stop)</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1F"> Sprawdzić estetykę i poprawność przewodów KJK.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1G"> Ustawić Panel Dyspozycji na stojaku.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1H"> W przypadku Kasety Dyspozycji ułożyć ją obok KJK.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1I"> Sprawdzić grawerkę oraz jakość połączeń.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1J"> Ułożyć Kasety Wezwań i Piętrowskazywacze w odpowiedniej kolejności.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1K"> Sprawdzić grawerkę i jakość wykonania połączeń.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1L"> Połączyć wszystkie kasety przewodami LiftCAN.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1M"> Ułożyć przewód Kasetki Jazdy Rewizyjnej z podszybia w pobliżu Szafy Sterowej.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1N"> Dołożyć rezystory końcowe magistrali oraz przelotkę CAN zgodnie z dokumentacją.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1O"> Ustawić wciągarkę o odpowiedniej mocy w pobliżu Szafy Sterowej.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_1" id="cbLB04_1P"> Ustawić UPS w pobliżu Szafy Sterowania (opcja).</label>
+  </div>
+  <button id="nextLB04_1">Dalej</button>
+</div>
+
+<div class="view" id="viewLB04_2">
+  <div class="checkbox-group">
+    <div class="center-text" style="font-size:22px;font-weight:bold;">Podłączenie szafy sterowania do symulatora</div>
+    <label><input type="checkbox" class="cbLB04_2" id="cbLB04_2A"> Ustawić wszystkie wyłączniki Szafy Sterowej w pozycji WYŁ.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_2" id="cbLB04_2B"> Podłączyć pilot jazdy rewizyjnej według schematu (str. 17,2).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_2" id="cbLB04_2C"> Podłączyć przewody zasilające (L1, L2, L3, N, PE) oraz zasilanie administracyjne (1L1, 1N1, PE).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_2" id="cbLB04_2D"> Podłączyć przewody F1 i F2 z próbnikami do odpowiednich zacisków szafy.
+Podłączyć obwód bezpieczeństwa według schematu (str. 4,2).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_2" id="cbLB04_2E"> Podłączyć obwód ogranicznika prędkości (str. 17)</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_2" id="cbLB04_2F"> Podłączyć obwód termistora silnika i dmuchawy silnika (symulator) – zaciski 40, 41 i Na, B19
+sygnalizację alarmu – S50, S51</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_2" id="cbLB04_2G"> Podłączyć obwód łącznika EPO (symulator), ustawiony w pozycji WYŁ. (opcja)</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_2" id="cbLB04_2H"> Podłączyć przewody do symulacji jazdy do odpowiednich zacisków modułu głównego IFO – góra</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_2" id="cbLB04_2I"> Podłączyć przewody do symulacji jazdy do odpowiednich zacisków modułu głównego IFU – dół</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_2" id="cbLB04_2J"> Podłączyć przewody do symulacji jazdy do odpowiednich zacisków modułu głównego CN – GND w falowniku</label>
+  </div>
+  <button id="nextLB04_2">Dalej</button>
+</div>
+
+<div class="view" id="viewLB04_3">
+  <div class="checkbox-group">
+    <div class="center-text" style="font-size:22px;font-weight:bold;">Podłączenie wciągarki i UPS</div>
+    <label><input type="checkbox" class="cbLB04_3" id="cbLB04_3A"> Podłączyć silnik do falownika wtykami U, V, W oraz przewód ochronny PE pod śrubkę wtyku.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_3" id="cbLB04_3B"> Podłączyć enkoder odpowiednią wtyczką do falownika.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_3" id="cbLB04_3C"> Sprawdzić napięcie cewki luzownika w przypisanej wciągarce; jeśli inne niż 207 V, zastosować odpowiednie przejściówki.
+</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_3" id="cbLB04_3D"> Podłączyć UPS specjalnymi wtykami, zwracając uwagę na prawidłowość połączeń w szafie sterowej (WEJ./WYJ.).</label>
+  </div>
+  <button id="nextLB04_3">Dalej</button>
+</div>
+
+<div class="view" id="viewLB04_4">
+  <div class="checkbox-group">
+    <div class="center-text" style="font-size:22px;font-weight:bold;">Podłączenie kasety jazdy kontrolnej</div>
+    <label><input type="checkbox" class="cbLB04_4" id="cbLB04_4A"> Podłączyć sygnały odwzorowania i wejścia diagnostyczne UB, VB, ZTK zgodnie ze schematem (str. 9,3).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_4" id="cbLB04_4B"> Podłączyć odpowiednie łączniki obwodu bezpieczeństwa zgodnie ze schematem (str. 4,2).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_4" id="cbLB04_4C"> Podłączyć dodatkową kasetkę sygnalizacyjną BYL i STOP (jeśli występuje).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_4" id="cbLB04_4D"> Podłączyć przewody F1 i F2 z próbnikami do specjalnych gniazd w zaciskach KJK.</label>
+  </div>
+  <button id="nextLB04_4">Dalej</button>
+</div>
+
+<div class="view" id="viewLB04_5">
+  <div class="checkbox-group">
+    <div class="center-text" style="font-size:22px;font-weight:bold;">Podłączenie panela i kasety wezwań</div>
+    <label><input type="checkbox" class="cbLB04_5" id="cbLB04_5A"> Podłączyć przewód sygnałowy do Panelu Dyspozycji (Z1, lub Z2 jeśli są dwa panele).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_5" id="cbLB04_5B"> Podłączyć przewody LiftCAN od modułu odwzorowania w KJK do sterownika drzwi w symulatorze, a dalej do modułu dyspozycji w panelu.
+</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_5" id="cbLB04_5C"> Podłączyć przewód LiftCAN z kasety wezwań ostatniego przystanku do modułu głównego w szafie sterowej (nie wpinamy do modułu głównego).
+</label>
+  </div>
+  <button id="nextLB04_5">Dalej</button>
+</div>
+
+<div class="view" id="viewLB04_6">
+  <div class="checkbox-group">
+    <div class="center-text" style="font-size:22px;font-weight:bold;">Uruchamianie</div>
+    <label><input type="checkbox" class="cbLB04_6" id="cbLB04_6A"> Wypiąć wtyczki LiftCAN z modułu głównego.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_6" id="cbLB04_6B"> Załączyć główne zasilanie symulatora i ustawić liczbę przystanków (rodzaj drzwi).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_6" id="cbLB04_6C"> Załączyć zasilanie główne szafy sterowej w symulatorze.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_6" id="cbLB04_6D"> Załączyć zasilanie administracyjne szafy sterowej w symulatorze.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_6" id="cbLB04_6E"> Załączyć łącznik EPE i poczekać na uruchomienie UPSa.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_6" id="cbLB04_6F"> Zmierz napięcie (230 V) na wejściu bezpiecznika E1; jeśli prawidłowe, załączyć.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_6" id="cbLB04_6G"> Załączyć wyłącznik różnicowoprądowy EHD i sprawdzić zasilacze NZ1 i NZ2.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_6" id="cbLB04_6H"> Sprawdzić napięcia na wejściach bezpieczników E2, E3, EWZ zgodnie ze schematem (str. 3A1).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_6" id="cbLB04_6I"> Sprawdzić separację wyjść bezpieczników względem masy (obudowy).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_6" id="cbLB04_6J"> Załączyć bezpieczniki E3, E2, EWZ (wskaźniki w symulatorze powinny pokazywać odpowiednio 24 V i 48 V).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_6" id="cbLB04_6K"> Podłączyć ponownie wtyki LiftCAN do modułu głównego.</label>
+  </div>
+  <button id="nextLB04_6">Dalej</button>
+</div>
+
+<div class="view" id="viewLB04_7">
+  <div class="checkbox-group">
+    <div class="center-text" style="font-size:22px;font-weight:bold;">Programowanie</div>
+    <label><input type="checkbox" class="cbLB04_7" id="cbLB04_7A"> Wprowadzić przygotowane przez projektanta parametry silnika do falownika za pomocą dedykowanego oprogramowania.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_7" id="cbLB04_7B"> Wprowadzić odpowiednie nastawy do modułu MT513 specjalnym oprogramowaniem.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_7" id="cbLB04_7C"> Sprawdzić i zaktualizować oprogramowanie modułu głównego LS2020 do najnowszej wersji.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_7" id="cbLB04_7D"> Wprowadzić ręcznie indywidualne nastawy dźwigu z dokumentacji (sprawdzić z kartą zamówienia i dokonać ewentualnych korekt).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_7" id="cbLB04_7E"> Ustawić pozostałe moduły w panelu dyspozycji i kasetach wezwań zgodnie z ich zastosowaniem.</label>
+  </div>
+  <button id="nextLB04_7">Dalej</button>
+</div>
+
+<div class="view" id="viewLB04_8">
+  <div class="checkbox-group">
+    <div class="center-text" style="font-size:22px;font-weight:bold;">Sprawdzanie</div>
+    <label><input type="checkbox" class="cbLB04_8" id="cbLB04_8A"> Uruchomić jazdę rewizyjną; sprawdzić prawidłową pracę wciągarki i działanie luzownika.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8B"> Podłączyć wszystkie moduły (wtyki LiftCAN do modułu głównego) i przełączyć na jazdę normalną; sprawdzić prawidłowy dojazd na przystanek końcowy i wyświetlanie numeru piętra.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8C"> Jeżeli sterowanie wykorzystuje funkcję STO falownika, podczas postoju oraz dla każdego przekaźnika W31 i W32 sprawdzić, czy zmostkowanie zacisków 11 i 14 powoduje zarejestrowanie błędu (usterka 26).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8D"> Podczas jazdy normalnej sprawdzić, czy podanie sygnału GND na zacisk IF sterownika powoduje zarejestrowanie błędu (usterka 16).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8E"> Wydawać polecenia jazdy przyciskami w panelu dyspozycji i kasetach wezwań; sprawdzić prawidłowe wykonywanie poleceń i działanie drzwi kabinowych.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8F"> Sprawdzić działanie wszystkich pozostałych przycisków (otwieranie/zamykanie drzwi, stop, alarm, wentylator, itp.) oraz funkcji jazdy specjalnej.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8G"> Sprawdzić funkcję nawrotu drzwi (bariera świetlna, łącznik uderzeniowy, wejście diagnostyczne bariery świetlnej).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8H"> Sprawdzić działanie funkcji kontroli otwarcia obwodu bezpieczeństwa po otwarciu drzwi kabinowych i szybowych (usterka 23).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8I"> Sprawdzić funkcję przeciążenia i pełnego obciążenia; dla przeciążenia wymagana jest sygnalizacja dźwiękowa.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8J"> Sprawdzić funkcję zjazdu pożarowego; sprawdzić sygnalizację dźwiękową przy jazdach kontrolnych i prawidłowy zjazd po wyłączeniu jazdy kontrolnej. Dla dźwigu strażackiego stosować oddzielną procedurę.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8K"> Sprawdzić reakcję sterowania na przerywanie obwodu bezpieczeństwa i poprawność wskazań stanu obwodu na sterowniku.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8L"> Sprawdzić działanie dźwigu w każdym trybie BYPASS; sygnalizacja dźwiękowa powinna działać podczas jazdy.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8M"> Sprawdzić funkcję kontroli niezamierzonego ruchu kabiny (UCM).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8N"> Dla dźwigu z niskim nadszybiem/podszybiem sprawdzić system bezpieczeństwa i sygnalizację awaryjną po wejściu do szybu.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8O"> Sprawdzić działanie zjazdu awaryjnego: kierunek, prędkość i przystanek docelowy (jeżeli występuje).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8P"> Podczas testów zwracać uwagę na prawidłowość wskazań piętrowskazywaczy.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8R"> Zaprogramować i sprawdzić działanie łączności awaryjnej (jeżeli wymagane).</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_8" id="cbLB04_8S"> Sprawdzić działanie zasilania awaryjnego (oświetlenie awaryjne, alarm, komunikacja).</label>
+  </div>
+  <button id="nextLB04_8">Dalej</button>
+</div>
+
+<div class="view" id="viewLB04_9">
+  <div class="checkbox-group">
+    <div class="center-text" style="font-size:22px;font-weight:bold;">Zakończenie kontroli</div>
+    <label><input type="checkbox" class="cbLB04_9" id="cbLB04_9A"> Wyłączyć zasilanie wyłącznikiem w szafie sterowej oraz w modelu dźwigu.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_9" id="cbLB04_9B"> W szafie sterowej ustawić wszystkie wyłączniki i bezpieczniki w pozycji wyłączonej.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_9" id="cbLB04_9C"> Nakleić wymagane informacje i instrukcje.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_9" id="cbLB04_9D"> Odłączyć urządzenia i przekazać je do pakowania.</label>
+    <label style="display:none;"><input type="checkbox" class="cbLB04_9" id="cbLB04_9E"> Przekazać dokumentację do Biura Technicznego w celu naniesienia poprawek.</label>
+  </div>
+  <button id="nextLB04_9">Dalej</button>
 </div>
 
 <!-- NUMERY SERYJNE MODUŁÓW -->
@@ -267,7 +413,7 @@ document.getElementById('loginButton').onclick = () => {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('startView').classList.add('active');
   }else {
-    error.style.display = "block"; // pokaż błąd
+    error.style.display = "block";
   }
 };
 
@@ -301,7 +447,7 @@ startOptions.forEach(cb => {
   });
 });
 
-//reset widocznosci przy ocji 1
+//reset widocznosci przy opcji 1
 function resetViewOpt1() {
   cb1A.checked = false;
   cb1B.checked = false;
@@ -309,6 +455,169 @@ function resetViewOpt1() {
 
   cb1B.parentElement.style.display = 'none';
   cb1C.parentElement.style.display = 'none';
+}
+
+//reset widocznosci przy LB-04
+function resetViewLB04() {
+  // Reset ekran 1
+  cbLB04_1A.checked = false;
+  cbLB04_1B.checked = false;
+  cbLB04_1C.checked = false;
+  cbLB04_1D.checked = false;
+  cbLB04_1E.checked = false;
+  cbLB04_1F.checked = false;
+  cbLB04_1G.checked = false;
+  cbLB04_1H.checked = false;
+  cbLB04_1I.checked = false;
+  cbLB04_1J.checked = false;
+  cbLB04_1K.checked = false;
+  cbLB04_1L.checked = false;
+  cbLB04_1M.checked = false;
+  cbLB04_1N.checked = false;
+  cbLB04_1O.checked = false;
+  cbLB04_1P.checked = false;
+  cbLB04_1B.parentElement.style.display = 'none';
+  cbLB04_1C.parentElement.style.display = 'none';
+  cbLB04_1D.parentElement.style.display = 'none';
+  cbLB04_1E.parentElement.style.display = 'none';
+  cbLB04_1F.parentElement.style.display = 'none';
+  cbLB04_1G.parentElement.style.display = 'none';
+  cbLB04_1H.parentElement.style.display = 'none';
+  cbLB04_1I.parentElement.style.display = 'none';
+  cbLB04_1J.parentElement.style.display = 'none';
+  cbLB04_1K.parentElement.style.display = 'none';
+  cbLB04_1L.parentElement.style.display = 'none';
+  cbLB04_1M.parentElement.style.display = 'none';
+  cbLB04_1N.parentElement.style.display = 'none';
+  cbLB04_1O.parentElement.style.display = 'none';
+  cbLB04_1P.parentElement.style.display = 'none';
+  
+  // Reset ekran 2
+  cbLB04_2A.checked = false;
+  cbLB04_2B.checked = false;
+  cbLB04_2C.checked = false;
+  cbLB04_2D.checked = false;
+  cbLB04_2E.checked = false;
+  cbLB04_2F.checked = false;
+  cbLB04_2G.checked = false;
+  cbLB04_2H.checked = false;
+  cbLB04_2I.checked = false;
+  cbLB04_2J.checked = false;
+  cbLB04_2B.parentElement.style.display = 'none';
+  cbLB04_2C.parentElement.style.display = 'none';
+  cbLB04_2D.parentElement.style.display = 'none';
+  cbLB04_2E.parentElement.style.display = 'none';
+  cbLB04_2F.parentElement.style.display = 'none';
+  cbLB04_2G.parentElement.style.display = 'none';
+  cbLB04_2H.parentElement.style.display = 'none';
+  cbLB04_2I.parentElement.style.display = 'none';
+  cbLB04_2J.parentElement.style.display = 'none';
+  
+  // Reset ekran 3
+  cbLB04_3A.checked = false;
+  cbLB04_3B.checked = false;
+  cbLB04_3C.checked = false;
+  cbLB04_3D.checked = false;
+  cbLB04_3B.parentElement.style.display = 'none';
+  cbLB04_3C.parentElement.style.display = 'none';
+  cbLB04_3D.parentElement.style.display = 'none';
+  
+  // Reset ekran 4
+  cbLB04_4A.checked = false;
+  cbLB04_4B.checked = false;
+  cbLB04_4C.checked = false;
+  cbLB04_4D.checked = false;
+  cbLB04_4B.parentElement.style.display = 'none';
+  cbLB04_4C.parentElement.style.display = 'none';
+  cbLB04_4D.parentElement.style.display = 'none';
+  
+  // Reset ekran 5
+  cbLB04_5A.checked = false;
+  cbLB04_5B.checked = false;
+  cbLB04_5C.checked = false;
+  cbLB04_5B.parentElement.style.display = 'none';
+  cbLB04_5C.parentElement.style.display = 'none';
+  
+  // Reset ekran 6
+  cbLB04_6A.checked = false;
+  cbLB04_6B.checked = false;
+  cbLB04_6C.checked = false;
+  cbLB04_6D.checked = false;
+  cbLB04_6E.checked = false;
+  cbLB04_6F.checked = false;
+  cbLB04_6G.checked = false;
+  cbLB04_6H.checked = false;
+  cbLB04_6I.checked = false;
+  cbLB04_6J.checked = false;
+  cbLB04_6K.checked = false;
+  cbLB04_6B.parentElement.style.display = 'none';
+  cbLB04_6C.parentElement.style.display = 'none';
+  cbLB04_6D.parentElement.style.display = 'none';
+  cbLB04_6E.parentElement.style.display = 'none';
+  cbLB04_6F.parentElement.style.display = 'none';
+  cbLB04_6G.parentElement.style.display = 'none';
+  cbLB04_6H.parentElement.style.display = 'none';
+  cbLB04_6I.parentElement.style.display = 'none';
+  cbLB04_6J.parentElement.style.display = 'none';
+  cbLB04_6K.parentElement.style.display = 'none';
+  
+  // Reset ekran 7
+  cbLB04_7A.checked = false;
+  cbLB04_7B.checked = false;
+  cbLB04_7C.checked = false;
+  cbLB04_7D.checked = false;
+  cbLB04_7E.checked = false;
+  cbLB04_7B.parentElement.style.display = 'none';
+  cbLB04_7C.parentElement.style.display = 'none';
+  cbLB04_7D.parentElement.style.display = 'none';
+  cbLB04_7E.parentElement.style.display = 'none';
+  
+  // Reset ekran 8
+  cbLB04_8A.checked = false;
+  cbLB04_8B.checked = false;
+  cbLB04_8C.checked = false;
+  cbLB04_8D.checked = false;
+  cbLB04_8E.checked = false;
+  cbLB04_8F.checked = false;
+  cbLB04_8G.checked = false;
+  cbLB04_8H.checked = false;
+  cbLB04_8I.checked = false;
+  cbLB04_8J.checked = false;
+  cbLB04_8K.checked = false;
+  cbLB04_8L.checked = false;
+  cbLB04_8M.checked = false;
+  cbLB04_8N.checked = false;
+  cbLB04_8O.checked = false;
+  cbLB04_8P.checked = false;
+  cbLB04_8R.checked = false;
+  cbLB04_8S.checked = false;
+  cbLB04_8B.parentElement.style.display = 'none';
+  cbLB04_8C.parentElement.style.display = 'none';
+  cbLB04_8D.parentElement.style.display = 'none';
+  cbLB04_8E.parentElement.style.display = 'none';
+  cbLB04_8F.parentElement.style.display = 'none';
+  cbLB04_8G.parentElement.style.display = 'none';
+  cbLB04_8H.parentElement.style.display = 'none';
+  cbLB04_8I.parentElement.style.display = 'none';
+  cbLB04_8J.parentElement.style.display = 'none';
+  cbLB04_8K.parentElement.style.display = 'none';
+  cbLB04_8L.parentElement.style.display = 'none';
+  cbLB04_8M.parentElement.style.display = 'none';
+  cbLB04_8N.parentElement.style.display = 'none';
+  cbLB04_8O.parentElement.style.display = 'none';
+  cbLB04_8P.parentElement.style.display = 'none';
+  cbLB04_8R.parentElement.style.display = 'none';
+  cbLB04_8S.parentElement.style.display = 'none';
+  
+  cbLB04_9A.checked = false;
+  cbLB04_9B.checked = false;
+  cbLB04_9C.checked = false;
+  cbLB04_9D.checked = false;
+  cbLB04_9E.checked = false;
+  cbLB04_9B.parentElement.style.display = 'none';
+  cbLB04_9C.parentElement.style.display = 'none';
+  cbLB04_9D.parentElement.style.display = 'none';
+  cbLB04_9E.parentElement.style.display = 'none';
 }
 
 // obsługa podopcji Opcji 2
@@ -326,6 +635,10 @@ startButton.onclick = () => {
   // przed zmianą widoku
     if(selectedGroup === 'viewOpt1') {
     resetViewOpt1(); // reset sekwencyjnych checkboxów
+  }
+  
+  if(selectedGroup === 'viewLB04_1') {
+    resetViewLB04(); // reset sekwencyjnych checkboxów LB-04
   }
   
   if (selectedGroup === 'viewOpt2') {
@@ -384,6 +697,1398 @@ nextOpt1.disabled = true;
 cb1C.addEventListener('change', () => {
   nextOpt1.disabled = !cb1C.checked;
 });
+
+// === SEKWENCYJNE CHECKBOXY DLA LB-04 ===
+// Ekran 1
+const cbLB04_1A = document.getElementById('cbLB04_1A');
+const cbLB04_1B = document.getElementById('cbLB04_1B');
+const cbLB04_1C = document.getElementById('cbLB04_1C');
+const cbLB04_1D = document.getElementById('cbLB04_1D');
+const cbLB04_1E = document.getElementById('cbLB04_1E');
+const cbLB04_1F = document.getElementById('cbLB04_1F');
+const cbLB04_1G = document.getElementById('cbLB04_1G');
+const cbLB04_1H = document.getElementById('cbLB04_1H');
+const cbLB04_1I = document.getElementById('cbLB04_1I');
+const cbLB04_1J = document.getElementById('cbLB04_1J');
+const cbLB04_1K = document.getElementById('cbLB04_1K');
+const cbLB04_1L = document.getElementById('cbLB04_1L');
+const cbLB04_1M = document.getElementById('cbLB04_1M');
+const cbLB04_1N = document.getElementById('cbLB04_1N');
+const cbLB04_1O = document.getElementById('cbLB04_1O');
+const cbLB04_1P = document.getElementById('cbLB04_1P');
+const nextLB04_1 = document.getElementById('nextLB04_1');
+
+cbLB04_1A.addEventListener('change', () => {
+  if (cbLB04_1A.checked) {
+    cbLB04_1B.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1B.checked = false;
+    cbLB04_1C.checked = false;
+    cbLB04_1D.checked = false;
+    cbLB04_1E.checked = false;
+    cbLB04_1F.checked = false;
+    cbLB04_1G.checked = false;
+    cbLB04_1H.checked = false;
+    cbLB04_1I.checked = false;
+    cbLB04_1J.checked = false;
+    cbLB04_1K.checked = false;
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1B.parentElement.style.display = 'none';
+    cbLB04_1C.parentElement.style.display = 'none';
+    cbLB04_1D.parentElement.style.display = 'none';
+    cbLB04_1E.parentElement.style.display = 'none';
+    cbLB04_1F.parentElement.style.display = 'none';
+    cbLB04_1G.parentElement.style.display = 'none';
+    cbLB04_1H.parentElement.style.display = 'none';
+    cbLB04_1I.parentElement.style.display = 'none';
+    cbLB04_1J.parentElement.style.display = 'none';
+    cbLB04_1K.parentElement.style.display = 'none';
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+    
+  }
+});
+
+cbLB04_1B.addEventListener('change', () => {
+  if (cbLB04_1B.checked) {
+    cbLB04_1C.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1C.checked = false;
+    cbLB04_1D.checked = false;
+    cbLB04_1E.checked = false;
+    cbLB04_1F.checked = false;
+    cbLB04_1G.checked = false;
+    cbLB04_1H.checked = false;
+    cbLB04_1I.checked = false;
+    cbLB04_1J.checked = false;
+    cbLB04_1K.checked = false;
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1C.parentElement.style.display = 'none';
+    cbLB04_1D.parentElement.style.display = 'none';
+    cbLB04_1E.parentElement.style.display = 'none';
+    cbLB04_1F.parentElement.style.display = 'none';
+    cbLB04_1G.parentElement.style.display = 'none';
+    cbLB04_1H.parentElement.style.display = 'none';
+    cbLB04_1I.parentElement.style.display = 'none';
+    cbLB04_1J.parentElement.style.display = 'none';
+    cbLB04_1K.parentElement.style.display = 'none';
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1C.addEventListener('change', () => {
+  if (cbLB04_1C.checked) {
+    cbLB04_1D.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1D.checked = false;
+    cbLB04_1E.checked = false;
+    cbLB04_1F.checked = false;
+    cbLB04_1G.checked = false;
+    cbLB04_1H.checked = false;
+    cbLB04_1I.checked = false;
+    cbLB04_1J.checked = false;
+    cbLB04_1K.checked = false;
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1D.parentElement.style.display = 'none';
+    cbLB04_1E.parentElement.style.display = 'none';
+    cbLB04_1F.parentElement.style.display = 'none';
+    cbLB04_1G.parentElement.style.display = 'none';
+    cbLB04_1H.parentElement.style.display = 'none';
+    cbLB04_1I.parentElement.style.display = 'none';
+    cbLB04_1J.parentElement.style.display = 'none';
+    cbLB04_1K.parentElement.style.display = 'none';
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1D.addEventListener('change', () => {
+  if (cbLB04_1D.checked) {
+    cbLB04_1E.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1E.checked = false;
+    cbLB04_1F.checked = false;
+    cbLB04_1G.checked = false;
+    cbLB04_1H.checked = false;
+    cbLB04_1I.checked = false;
+    cbLB04_1J.checked = false;
+    cbLB04_1K.checked = false;
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1E.parentElement.style.display = 'none';
+    cbLB04_1F.parentElement.style.display = 'none';
+    cbLB04_1G.parentElement.style.display = 'none';
+    cbLB04_1H.parentElement.style.display = 'none';
+    cbLB04_1I.parentElement.style.display = 'none';
+    cbLB04_1J.parentElement.style.display = 'none';
+    cbLB04_1K.parentElement.style.display = 'none';
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1E.addEventListener('change', () => {
+  if (cbLB04_1E.checked) {
+    cbLB04_1F.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1F.checked = false;
+    cbLB04_1G.checked = false;
+    cbLB04_1H.checked = false;
+    cbLB04_1I.checked = false;
+    cbLB04_1J.checked = false;
+    cbLB04_1K.checked = false;
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1F.parentElement.style.display = 'none';
+    cbLB04_1G.parentElement.style.display = 'none';
+    cbLB04_1H.parentElement.style.display = 'none';
+    cbLB04_1I.parentElement.style.display = 'none';
+    cbLB04_1J.parentElement.style.display = 'none';
+    cbLB04_1K.parentElement.style.display = 'none';
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1F.addEventListener('change', () => {
+  if (cbLB04_1F.checked) {
+    cbLB04_1G.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1G.checked = false;
+    cbLB04_1H.checked = false;
+    cbLB04_1I.checked = false;
+    cbLB04_1J.checked = false;
+    cbLB04_1K.checked = false;
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1G.parentElement.style.display = 'none';
+    cbLB04_1H.parentElement.style.display = 'none';
+    cbLB04_1I.parentElement.style.display = 'none';
+    cbLB04_1J.parentElement.style.display = 'none';
+    cbLB04_1K.parentElement.style.display = 'none';
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1G.addEventListener('change', () => {
+  if (cbLB04_1G.checked) {
+    cbLB04_1H.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1H.checked = false;
+    cbLB04_1I.checked = false;
+    cbLB04_1J.checked = false;
+    cbLB04_1K.checked = false;
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1H.parentElement.style.display = 'none';
+    cbLB04_1I.parentElement.style.display = 'none';
+    cbLB04_1J.parentElement.style.display = 'none';
+    cbLB04_1K.parentElement.style.display = 'none';
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1H.addEventListener('change', () => {
+  if (cbLB04_1H.checked) {
+    cbLB04_1I.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1I.checked = false;
+    cbLB04_1J.checked = false;
+    cbLB04_1K.checked = false;
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1I.parentElement.style.display = 'none';
+    cbLB04_1J.parentElement.style.display = 'none';
+    cbLB04_1K.parentElement.style.display = 'none';
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1I.addEventListener('change', () => {
+  if (cbLB04_1I.checked) {
+    cbLB04_1J.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1J.checked = false;
+    cbLB04_1K.checked = false;
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1J.parentElement.style.display = 'none';
+    cbLB04_1K.parentElement.style.display = 'none';
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1J.addEventListener('change', () => {
+  if (cbLB04_1J.checked) {
+    cbLB04_1K.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1K.checked = false;
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1K.parentElement.style.display = 'none';
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1K.addEventListener('change', () => {
+  if (cbLB04_1K.checked) {
+    cbLB04_1L.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1L.checked = false;
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1L.parentElement.style.display = 'none';
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1L.addEventListener('change', () => {
+  if (cbLB04_1L.checked) {
+    cbLB04_1M.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1M.checked = false;
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1M.parentElement.style.display = 'none';
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1M.addEventListener('change', () => {
+  if (cbLB04_1M.checked) {
+    cbLB04_1N.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1N.checked = false;
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1N.parentElement.style.display = 'none';
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1N.addEventListener('change', () => {
+  if (cbLB04_1N.checked) {
+    cbLB04_1O.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1O.checked = false;
+    cbLB04_1P.checked = false;
+    cbLB04_1O.parentElement.style.display = 'none';
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_1O.addEventListener('change', () => {
+  if (cbLB04_1O.checked) {
+    cbLB04_1P.parentElement.style.display = 'block';
+  } else {
+    cbLB04_1P.checked = false;
+    cbLB04_1P.parentElement.style.display = 'none';
+  }
+});
+
+// Ekran 2
+const cbLB04_2A = document.getElementById('cbLB04_2A');
+const cbLB04_2B = document.getElementById('cbLB04_2B');
+const cbLB04_2C = document.getElementById('cbLB04_2C');
+const cbLB04_2D = document.getElementById('cbLB04_2D');
+const cbLB04_2E = document.getElementById('cbLB04_2E');
+const cbLB04_2F = document.getElementById('cbLB04_2F');
+const cbLB04_2G = document.getElementById('cbLB04_2G');
+const cbLB04_2H = document.getElementById('cbLB04_2H');
+const cbLB04_2I = document.getElementById('cbLB04_2I');
+const cbLB04_2J = document.getElementById('cbLB04_2J');
+const nextLB04_2 = document.getElementById('nextLB04_2');
+
+cbLB04_2A.addEventListener('change', () => {
+  if (cbLB04_2A.checked) {
+    cbLB04_2B.parentElement.style.display = 'block';
+  } else {
+    cbLB04_2B.checked = false;
+    cbLB04_2C.checked = false;
+    cbLB04_2D.checked = false;
+    cbLB04_2E.checked = false;
+    cbLB04_2F.checked = false;
+    cbLB04_2G.checked = false;
+    cbLB04_2H.checked = false;
+    cbLB04_2I.checked = false;
+    cbLB04_2J.checked = false;
+    cbLB04_2B.parentElement.style.display = 'none';
+    cbLB04_2C.parentElement.style.display = 'none';
+    cbLB04_2D.parentElement.style.display = 'none';
+    cbLB04_2E.parentElement.style.display = 'none';
+    cbLB04_2F.parentElement.style.display = 'none';
+    cbLB04_2G.parentElement.style.display = 'none';
+    cbLB04_2H.parentElement.style.display = 'none';
+    cbLB04_2I.parentElement.style.display = 'none';
+    cbLB04_2J.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_2B.addEventListener('change', () => {
+  if (cbLB04_2B.checked) {
+    cbLB04_2C.parentElement.style.display = 'block';
+  } else {
+    cbLB04_2C.checked = false;
+    cbLB04_2D.checked = false;
+    cbLB04_2E.checked = false;
+    cbLB04_2F.checked = false;
+    cbLB04_2G.checked = false;
+    cbLB04_2H.checked = false;
+    cbLB04_2I.checked = false;
+    cbLB04_2J.checked = false;
+    cbLB04_2C.parentElement.style.display = 'none';
+    cbLB04_2D.parentElement.style.display = 'none';
+    cbLB04_2E.parentElement.style.display = 'none';
+    cbLB04_2F.parentElement.style.display = 'none';
+    cbLB04_2G.parentElement.style.display = 'none';
+    cbLB04_2H.parentElement.style.display = 'none';
+    cbLB04_2I.parentElement.style.display = 'none';
+    cbLB04_2J.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_2C.addEventListener('change', () => {
+  if (cbLB04_2C.checked) {
+    cbLB04_2D.parentElement.style.display = 'block';
+  } else {
+    cbLB04_2D.checked = false;
+    cbLB04_2E.checked = false;
+    cbLB04_2F.checked = false;
+    cbLB04_2G.checked = false;
+    cbLB04_2H.checked = false;
+    cbLB04_2I.checked = false;
+    cbLB04_2J.checked = false;
+    cbLB04_2D.parentElement.style.display = 'none';
+    cbLB04_2E.parentElement.style.display = 'none';
+    cbLB04_2F.parentElement.style.display = 'none';
+    cbLB04_2G.parentElement.style.display = 'none';
+    cbLB04_2H.parentElement.style.display = 'none';
+    cbLB04_2I.parentElement.style.display = 'none';
+    cbLB04_2J.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_2D.addEventListener('change', () => {
+  if (cbLB04_2D.checked) {
+    cbLB04_2E.parentElement.style.display = 'block';
+  } else {
+    cbLB04_2E.checked = false;
+    cbLB04_2F.checked = false;
+    cbLB04_2G.checked = false;
+    cbLB04_2H.checked = false;
+    cbLB04_2I.checked = false;
+    cbLB04_2J.checked = false;
+    cbLB04_2E.parentElement.style.display = 'none';
+    cbLB04_2F.parentElement.style.display = 'none';
+    cbLB04_2G.parentElement.style.display = 'none';
+    cbLB04_2H.parentElement.style.display = 'none';
+    cbLB04_2I.parentElement.style.display = 'none';
+    cbLB04_2J.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_2E.addEventListener('change', () => {
+  if (cbLB04_2E.checked) {
+    cbLB04_2F.parentElement.style.display = 'block';
+  } else {
+    cbLB04_2F.checked = false;
+    cbLB04_2G.checked = false;
+    cbLB04_2H.checked = false;
+    cbLB04_2I.checked = false;
+    cbLB04_2J.checked = false;
+    cbLB04_2F.parentElement.style.display = 'none';
+    cbLB04_2G.parentElement.style.display = 'none';
+    cbLB04_2H.parentElement.style.display = 'none';
+    cbLB04_2I.parentElement.style.display = 'none';
+    cbLB04_2J.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_2F.addEventListener('change', () => {
+  if (cbLB04_2F.checked) {
+    cbLB04_2G.parentElement.style.display = 'block';
+  } else {
+    cbLB04_2G.checked = false;
+    cbLB04_2H.checked = false;
+    cbLB04_2I.checked = false;
+    cbLB04_2J.checked = false;
+    cbLB04_2G.parentElement.style.display = 'none';
+    cbLB04_2H.parentElement.style.display = 'none';
+    cbLB04_2I.parentElement.style.display = 'none';
+    cbLB04_2J.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_2G.addEventListener('change', () => {
+  if (cbLB04_2G.checked) {
+    cbLB04_2H.parentElement.style.display = 'block';
+  } else {
+    cbLB04_2H.checked = false;
+    cbLB04_2I.checked = false;
+    cbLB04_2J.checked = false;
+    cbLB04_2H.parentElement.style.display = 'none';
+    cbLB04_2I.parentElement.style.display = 'none';
+    cbLB04_2J.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_2H.addEventListener('change', () => {
+  if (cbLB04_2H.checked) {
+    cbLB04_2I.parentElement.style.display = 'block';
+  } else {
+    cbLB04_2I.checked = false;
+    cbLB04_2J.checked = false;
+    cbLB04_2I.parentElement.style.display = 'none';
+    cbLB04_2J.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_2I.addEventListener('change', () => {
+  if (cbLB04_2I.checked) {
+    cbLB04_2J.parentElement.style.display = 'block';
+  } else {
+    cbLB04_2J.checked = false;
+    cbLB04_2J.parentElement.style.display = 'none';
+  }
+});
+
+// Ekran 3
+const cbLB04_3A = document.getElementById('cbLB04_3A');
+const cbLB04_3B = document.getElementById('cbLB04_3B');
+const cbLB04_3C = document.getElementById('cbLB04_3C');
+const cbLB04_3D = document.getElementById('cbLB04_3D');
+const nextLB04_3 = document.getElementById('nextLB04_3');
+
+cbLB04_3A.addEventListener('change', () => {
+  if (cbLB04_3A.checked) {
+    cbLB04_3B.parentElement.style.display = 'block';
+  } else {
+    cbLB04_3B.checked = false;
+    cbLB04_3C.checked = false;
+    cbLB04_3D.checked = false;
+    cbLB04_3B.parentElement.style.display = 'none';
+    cbLB04_3C.parentElement.style.display = 'none';
+    cbLB04_3D.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_3B.addEventListener('change', () => {
+  if (cbLB04_3B.checked) {
+    cbLB04_3C.parentElement.style.display = 'block';
+  } else {
+    cbLB04_3C.checked = false;
+    cbLB04_3D.checked = false;
+    cbLB04_3C.parentElement.style.display = 'none';
+    cbLB04_3D.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_3C.addEventListener('change', () => {
+  if (cbLB04_3C.checked) {
+    cbLB04_3D.parentElement.style.display = 'block';
+  } else {
+    cbLB04_3D.checked = false;
+    cbLB04_3D.parentElement.style.display = 'none';
+  }
+});
+
+// Ekran 4
+const cbLB04_4A = document.getElementById('cbLB04_4A');
+const cbLB04_4B = document.getElementById('cbLB04_4B');
+const cbLB04_4C = document.getElementById('cbLB04_4C');
+const cbLB04_4D = document.getElementById('cbLB04_4D');
+const nextLB04_4 = document.getElementById('nextLB04_4');
+
+cbLB04_4A.addEventListener('change', () => {
+  if (cbLB04_4A.checked) {
+    cbLB04_4B.parentElement.style.display = 'block';
+  } else {
+    cbLB04_4B.checked = false;
+    cbLB04_4C.checked = false;
+    cbLB04_4D.checked = false;
+    cbLB04_4B.parentElement.style.display = 'none';
+    cbLB04_4C.parentElement.style.display = 'none';
+    cbLB04_4D.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_4B.addEventListener('change', () => {
+  if (cbLB04_4B.checked) {
+    cbLB04_4C.parentElement.style.display = 'block';
+  } else {
+    cbLB04_4C.checked = false;
+    cbLB04_4D.checked = false;
+    cbLB04_4C.parentElement.style.display = 'none';
+    cbLB04_4D.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_4C.addEventListener('change', () => {
+  if (cbLB04_4C.checked) {
+    cbLB04_4D.parentElement.style.display = 'block';
+  } else {
+    cbLB04_4D.checked = false;
+    cbLB04_4D.parentElement.style.display = 'none';
+  }
+});
+
+// Ekran 5
+const cbLB04_5A = document.getElementById('cbLB04_5A');
+const cbLB04_5B = document.getElementById('cbLB04_5B');
+const cbLB04_5C = document.getElementById('cbLB04_5C');
+const nextLB04_5 = document.getElementById('nextLB04_5');
+
+cbLB04_5A.addEventListener('change', () => {
+  if (cbLB04_5A.checked) {
+    cbLB04_5B.parentElement.style.display = 'block';
+  } else {
+    cbLB04_5B.checked = false;
+    cbLB04_5C.checked = false;
+    cbLB04_5B.parentElement.style.display = 'none';
+    cbLB04_5C.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_5B.addEventListener('change', () => {
+  if (cbLB04_5B.checked) {
+    cbLB04_5C.parentElement.style.display = 'block';
+  } else {
+    cbLB04_5C.checked = false;
+    cbLB04_5C.parentElement.style.display = 'none';
+  }
+});
+
+// Ekran 6
+const cbLB04_6A = document.getElementById('cbLB04_6A');
+const cbLB04_6B = document.getElementById('cbLB04_6B');
+const cbLB04_6C = document.getElementById('cbLB04_6C');
+const cbLB04_6D = document.getElementById('cbLB04_6D');
+const cbLB04_6E = document.getElementById('cbLB04_6E');
+const cbLB04_6F = document.getElementById('cbLB04_6F');
+const cbLB04_6G = document.getElementById('cbLB04_6G');
+const cbLB04_6H = document.getElementById('cbLB04_6H');
+const cbLB04_6I = document.getElementById('cbLB04_6I');
+const cbLB04_6J = document.getElementById('cbLB04_6J');
+const cbLB04_6K = document.getElementById('cbLB04_6K');
+const nextLB04_6 = document.getElementById('nextLB04_6');
+
+cbLB04_6A.addEventListener('change', () => {
+  if (cbLB04_6A.checked) {
+    cbLB04_6B.parentElement.style.display = 'block';
+  } else {
+    cbLB04_6B.checked = false;
+    cbLB04_6C.checked = false;
+    cbLB04_6D.checked = false;
+    cbLB04_6E.checked = false;
+    cbLB04_6F.checked = false;
+    cbLB04_6G.checked = false;
+    cbLB04_6H.checked = false;
+    cbLB04_6I.checked = false;
+    cbLB04_6J.checked = false;
+    cbLB04_6K.checked = false;
+    cbLB04_6B.parentElement.style.display = 'none';
+    cbLB04_6C.parentElement.style.display = 'none';
+    cbLB04_6D.parentElement.style.display = 'none';
+    cbLB04_6E.parentElement.style.display = 'none';
+    cbLB04_6F.parentElement.style.display = 'none';
+    cbLB04_6G.parentElement.style.display = 'none';
+    cbLB04_6H.parentElement.style.display = 'none';
+    cbLB04_6I.parentElement.style.display = 'none';
+    cbLB04_6J.parentElement.style.display = 'none';
+    cbLB04_6K.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_6B.addEventListener('change', () => {
+  if (cbLB04_6B.checked) {
+    cbLB04_6C.parentElement.style.display = 'block';
+  } else {
+    cbLB04_6C.checked = false;
+    cbLB04_6D.checked = false;
+    cbLB04_6E.checked = false;
+    cbLB04_6F.checked = false;
+    cbLB04_6G.checked = false;
+    cbLB04_6H.checked = false;
+    cbLB04_6I.checked = false;
+    cbLB04_6J.checked = false;
+    cbLB04_6K.checked = false;
+    cbLB04_6C.parentElement.style.display = 'none';
+    cbLB04_6D.parentElement.style.display = 'none';
+    cbLB04_6E.parentElement.style.display = 'none';
+    cbLB04_6F.parentElement.style.display = 'none';
+    cbLB04_6G.parentElement.style.display = 'none';
+    cbLB04_6H.parentElement.style.display = 'none';
+    cbLB04_6I.parentElement.style.display = 'none';
+    cbLB04_6J.parentElement.style.display = 'none';
+    cbLB04_6K.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_6C.addEventListener('change', () => {
+  if (cbLB04_6C.checked) {
+    cbLB04_6D.parentElement.style.display = 'block';
+  } else {
+    cbLB04_6D.checked = false;
+    cbLB04_6E.checked = false;
+    cbLB04_6F.checked = false;
+    cbLB04_6G.checked = false;
+    cbLB04_6H.checked = false;
+    cbLB04_6I.checked = false;
+    cbLB04_6J.checked = false;
+    cbLB04_6K.checked = false;
+    cbLB04_6D.parentElement.style.display = 'none';
+    cbLB04_6E.parentElement.style.display = 'none';
+    cbLB04_6F.parentElement.style.display = 'none';
+    cbLB04_6G.parentElement.style.display = 'none';
+    cbLB04_6H.parentElement.style.display = 'none';
+    cbLB04_6I.parentElement.style.display = 'none';
+    cbLB04_6J.parentElement.style.display = 'none';
+    cbLB04_6K.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_6D.addEventListener('change', () => {
+  if (cbLB04_6D.checked) {
+    cbLB04_6E.parentElement.style.display = 'block';
+  } else {
+    cbLB04_6E.checked = false;
+    cbLB04_6F.checked = false;
+    cbLB04_6G.checked = false;
+    cbLB04_6H.checked = false;
+    cbLB04_6I.checked = false;
+    cbLB04_6J.checked = false;
+    cbLB04_6K.checked = false;
+    cbLB04_6E.parentElement.style.display = 'none';
+    cbLB04_6F.parentElement.style.display = 'none';
+    cbLB04_6G.parentElement.style.display = 'none';
+    cbLB04_6H.parentElement.style.display = 'none';
+    cbLB04_6I.parentElement.style.display = 'none';
+    cbLB04_6J.parentElement.style.display = 'none';
+    cbLB04_6K.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_6E.addEventListener('change', () => {
+  if (cbLB04_6E.checked) {
+    cbLB04_6F.parentElement.style.display = 'block';
+  } else {
+    cbLB04_6F.checked = false;
+    cbLB04_6G.checked = false;
+    cbLB04_6H.checked = false;
+    cbLB04_6I.checked = false;
+    cbLB04_6J.checked = false;
+    cbLB04_6K.checked = false;
+    cbLB04_6F.parentElement.style.display = 'none';
+    cbLB04_6G.parentElement.style.display = 'none';
+    cbLB04_6H.parentElement.style.display = 'none';
+    cbLB04_6I.parentElement.style.display = 'none';
+    cbLB04_6J.parentElement.style.display = 'none';
+    cbLB04_6K.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_6F.addEventListener('change', () => {
+  if (cbLB04_6F.checked) {
+    cbLB04_6G.parentElement.style.display = 'block';
+  } else {
+    cbLB04_6G.checked = false;
+    cbLB04_6H.checked = false;
+    cbLB04_6I.checked = false;
+    cbLB04_6J.checked = false;
+    cbLB04_6K.checked = false;
+    cbLB04_6G.parentElement.style.display = 'none';
+    cbLB04_6H.parentElement.style.display = 'none';
+    cbLB04_6I.parentElement.style.display = 'none';
+    cbLB04_6J.parentElement.style.display = 'none';
+    cbLB04_6K.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_6G.addEventListener('change', () => {
+  if (cbLB04_6G.checked) {
+    cbLB04_6H.parentElement.style.display = 'block';
+  } else {
+    cbLB04_6H.checked = false;
+    cbLB04_6I.checked = false;
+    cbLB04_6J.checked = false;
+    cbLB04_6K.checked = false;
+    cbLB04_6H.parentElement.style.display = 'none';
+    cbLB04_6I.parentElement.style.display = 'none';
+    cbLB04_6J.parentElement.style.display = 'none';
+    cbLB04_6K.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_6H.addEventListener('change', () => {
+  if (cbLB04_6H.checked) {
+    cbLB04_6I.parentElement.style.display = 'block';
+  } else {
+    cbLB04_6I.checked = false;
+    cbLB04_6J.checked = false;
+    cbLB04_6K.checked = false;
+    cbLB04_6I.parentElement.style.display = 'none';
+    cbLB04_6J.parentElement.style.display = 'none';
+    cbLB04_6K.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_6I.addEventListener('change', () => {
+  if (cbLB04_6I.checked) {
+    cbLB04_6J.parentElement.style.display = 'block';
+  } else {
+    cbLB04_6J.checked = false;
+    cbLB04_6K.checked = false;
+    cbLB04_6J.parentElement.style.display = 'none';
+    cbLB04_6K.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_6J.addEventListener('change', () => {
+  if (cbLB04_6J.checked) {
+    cbLB04_6K.parentElement.style.display = 'block';
+  } else {
+    cbLB04_6K.checked = false;
+    cbLB04_6K.parentElement.style.display = 'none';
+  }
+});
+
+
+// Ekran 7
+const cbLB04_7A = document.getElementById('cbLB04_7A');
+const cbLB04_7B = document.getElementById('cbLB04_7B');
+const cbLB04_7C = document.getElementById('cbLB04_7C');
+const cbLB04_7D = document.getElementById('cbLB04_7D');
+const cbLB04_7E = document.getElementById('cbLB04_7E');
+const nextLB04_7 = document.getElementById('nextLB04_7');
+
+cbLB04_7A.addEventListener('change', () => {
+  if (cbLB04_7A.checked) {
+    cbLB04_7B.parentElement.style.display = 'block';
+  } else {
+    cbLB04_7B.checked = false;
+    cbLB04_7C.checked = false;
+    cbLB04_7D.checked = false;
+    cbLB04_7E.checked = false;
+    cbLB04_7B.parentElement.style.display = 'none';
+    cbLB04_7C.parentElement.style.display = 'none';
+    cbLB04_7D.parentElement.style.display = 'none';
+    cbLB04_7E.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_7B.addEventListener('change', () => {
+  if (cbLB04_7B.checked) {
+    cbLB04_7C.parentElement.style.display = 'block';
+  } else {
+    cbLB04_7C.checked = false;
+    cbLB04_7D.checked = false;
+    cbLB04_7E.checked = false;
+    cbLB04_7C.parentElement.style.display = 'none';
+    cbLB04_7D.parentElement.style.display = 'none';
+    cbLB04_7E.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_7C.addEventListener('change', () => {
+  if (cbLB04_7C.checked) {
+    cbLB04_7D.parentElement.style.display = 'block';
+  } else {
+    cbLB04_7D.checked = false;
+    cbLB04_7E.checked = false;
+    cbLB04_7D.parentElement.style.display = 'none';
+    cbLB04_7E.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_7D.addEventListener('change', () => {
+  if (cbLB04_7D.checked) {
+    cbLB04_7E.parentElement.style.display = 'block';
+  } else {
+    cbLB04_7E.checked = false;
+    cbLB04_7E.parentElement.style.display = 'none';
+  }
+});
+
+// Ekran 8
+const cbLB04_8A = document.getElementById('cbLB04_8A');
+const cbLB04_8B = document.getElementById('cbLB04_8B');
+const cbLB04_8C = document.getElementById('cbLB04_8C');
+const cbLB04_8D = document.getElementById('cbLB04_8D');
+const cbLB04_8E = document.getElementById('cbLB04_8E');
+const cbLB04_8F = document.getElementById('cbLB04_8F');
+const cbLB04_8G = document.getElementById('cbLB04_8G');
+const cbLB04_8H = document.getElementById('cbLB04_8H');
+const cbLB04_8I = document.getElementById('cbLB04_8I');
+const cbLB04_8J = document.getElementById('cbLB04_8J');
+const cbLB04_8K = document.getElementById('cbLB04_8K');
+const cbLB04_8L = document.getElementById('cbLB04_8L');
+const cbLB04_8M = document.getElementById('cbLB04_8M');
+const cbLB04_8N = document.getElementById('cbLB04_8N');
+const cbLB04_8O = document.getElementById('cbLB04_8O');
+const cbLB04_8P = document.getElementById('cbLB04_8P');
+const cbLB04_8R = document.getElementById('cbLB04_8R');
+const cbLB04_8S = document.getElementById('cbLB04_8S');
+const nextLB04_8 = document.getElementById('nextLB04_8');
+
+cbLB04_8A.addEventListener('change', () => {
+  if (cbLB04_8A.checked) {
+    cbLB04_8B.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8B.checked = false;
+    cbLB04_8C.checked = false;
+    cbLB04_8D.checked = false;
+    cbLB04_8E.checked = false;
+    cbLB04_8F.checked = false;
+    cbLB04_8G.checked = false;
+    cbLB04_8H.checked = false;
+    cbLB04_8I.checked = false;
+    cbLB04_8J.checked = false;
+    cbLB04_8K.checked = false;
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8B.parentElement.style.display = 'none';
+    cbLB04_8C.parentElement.style.display = 'none';
+    cbLB04_8D.parentElement.style.display = 'none';
+    cbLB04_8E.parentElement.style.display = 'none';
+    cbLB04_8F.parentElement.style.display = 'none';
+    cbLB04_8G.parentElement.style.display = 'none';
+    cbLB04_8H.parentElement.style.display = 'none';
+    cbLB04_8I.parentElement.style.display = 'none';
+    cbLB04_8J.parentElement.style.display = 'none';
+    cbLB04_8K.parentElement.style.display = 'none';
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8B.addEventListener('change', () => {
+  if (cbLB04_8B.checked) {
+    cbLB04_8C.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8C.checked = false;
+    cbLB04_8D.checked = false;
+    cbLB04_8E.checked = false;
+    cbLB04_8F.checked = false;
+    cbLB04_8G.checked = false;
+    cbLB04_8H.checked = false;
+    cbLB04_8I.checked = false;
+    cbLB04_8J.checked = false;
+    cbLB04_8K.checked = false;
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8C.parentElement.style.display = 'none';
+    cbLB04_8D.parentElement.style.display = 'none';
+    cbLB04_8E.parentElement.style.display = 'none';
+    cbLB04_8F.parentElement.style.display = 'none';
+    cbLB04_8G.parentElement.style.display = 'none';
+    cbLB04_8H.parentElement.style.display = 'none';
+    cbLB04_8I.parentElement.style.display = 'none';
+    cbLB04_8J.parentElement.style.display = 'none';
+    cbLB04_8K.parentElement.style.display = 'none';
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8C.addEventListener('change', () => {
+  if (cbLB04_8C.checked) {
+    cbLB04_8D.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8D.checked = false;
+    cbLB04_8E.checked = false;
+    cbLB04_8F.checked = false;
+    cbLB04_8G.checked = false;
+    cbLB04_8H.checked = false;
+    cbLB04_8I.checked = false;
+    cbLB04_8J.checked = false;
+    cbLB04_8K.checked = false;
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8D.parentElement.style.display = 'none';
+    cbLB04_8E.parentElement.style.display = 'none';
+    cbLB04_8F.parentElement.style.display = 'none';
+    cbLB04_8G.parentElement.style.display = 'none';
+    cbLB04_8H.parentElement.style.display = 'none';
+    cbLB04_8I.parentElement.style.display = 'none';
+    cbLB04_8J.parentElement.style.display = 'none';
+    cbLB04_8K.parentElement.style.display = 'none';
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8D.addEventListener('change', () => {
+  if (cbLB04_8D.checked) {
+    cbLB04_8E.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8E.checked = false;
+    cbLB04_8F.checked = false;
+    cbLB04_8G.checked = false;
+    cbLB04_8H.checked = false;
+    cbLB04_8I.checked = false;
+    cbLB04_8J.checked = false;
+    cbLB04_8K.checked = false;
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8E.parentElement.style.display = 'none';
+    cbLB04_8F.parentElement.style.display = 'none';
+    cbLB04_8G.parentElement.style.display = 'none';
+    cbLB04_8H.parentElement.style.display = 'none';
+    cbLB04_8I.parentElement.style.display = 'none';
+    cbLB04_8J.parentElement.style.display = 'none';
+    cbLB04_8K.parentElement.style.display = 'none';
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8E.addEventListener('change', () => {
+  if (cbLB04_8E.checked) {
+    cbLB04_8F.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8F.checked = false;
+    cbLB04_8G.checked = false;
+    cbLB04_8H.checked = false;
+    cbLB04_8I.checked = false;
+    cbLB04_8J.checked = false;
+    cbLB04_8K.checked = false;
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8F.parentElement.style.display = 'none';
+    cbLB04_8G.parentElement.style.display = 'none';
+    cbLB04_8H.parentElement.style.display = 'none';
+    cbLB04_8I.parentElement.style.display = 'none';
+    cbLB04_8J.parentElement.style.display = 'none';
+    cbLB04_8K.parentElement.style.display = 'none';
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8F.addEventListener('change', () => {
+  if (cbLB04_8F.checked) {
+    cbLB04_8G.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8G.checked = false;
+    cbLB04_8H.checked = false;
+    cbLB04_8I.checked = false;
+    cbLB04_8J.checked = false;
+    cbLB04_8K.checked = false;
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8G.parentElement.style.display = 'none';
+    cbLB04_8H.parentElement.style.display = 'none';
+    cbLB04_8I.parentElement.style.display = 'none';
+    cbLB04_8J.parentElement.style.display = 'none';
+    cbLB04_8K.parentElement.style.display = 'none';
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8G.addEventListener('change', () => {
+  if (cbLB04_8G.checked) {
+    cbLB04_8H.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8H.checked = false;
+    cbLB04_8I.checked = false;
+    cbLB04_8J.checked = false;
+    cbLB04_8K.checked = false;
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8H.parentElement.style.display = 'none';
+    cbLB04_8I.parentElement.style.display = 'none';
+    cbLB04_8J.parentElement.style.display = 'none';
+    cbLB04_8K.parentElement.style.display = 'none';
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8H.addEventListener('change', () => {
+  if (cbLB04_8H.checked) {
+    cbLB04_8I.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8I.checked = false;
+    cbLB04_8J.checked = false;
+    cbLB04_8K.checked = false;
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8I.parentElement.style.display = 'none';
+    cbLB04_8J.parentElement.style.display = 'none';
+    cbLB04_8K.parentElement.style.display = 'none';
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8I.addEventListener('change', () => {
+  if (cbLB04_8I.checked) {
+    cbLB04_8J.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8J.checked = false;
+    cbLB04_8K.checked = false;
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8J.parentElement.style.display = 'none';
+    cbLB04_8K.parentElement.style.display = 'none';
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8J.addEventListener('change', () => {
+  if (cbLB04_8J.checked) {
+    cbLB04_8K.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8K.checked = false;
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8K.parentElement.style.display = 'none';
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8K.addEventListener('change', () => {
+  if (cbLB04_8K.checked) {
+    cbLB04_8L.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8L.checked = false;
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8L.parentElement.style.display = 'none';
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8L.addEventListener('change', () => {
+  if (cbLB04_8L.checked) {
+    cbLB04_8M.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8M.checked = false;
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8M.parentElement.style.display = 'none';
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8M.addEventListener('change', () => {
+  if (cbLB04_8M.checked) {
+    cbLB04_8N.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8N.checked = false;
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8N.parentElement.style.display = 'none';
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8N.addEventListener('change', () => {
+  if (cbLB04_8N.checked) {
+    cbLB04_8O.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8O.checked = false;
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8O.parentElement.style.display = 'none';
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8O.addEventListener('change', () => {
+  if (cbLB04_8O.checked) {
+    cbLB04_8P.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8P.checked = false;
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8P.parentElement.style.display = 'none';
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8P.addEventListener('change', () => {
+  if (cbLB04_8P.checked) {
+    cbLB04_8R.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8R.checked = false;
+    cbLB04_8S.checked = false;
+    cbLB04_8R.parentElement.style.display = 'none';
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_8R.addEventListener('change', () => {
+  if (cbLB04_8R.checked) {
+    cbLB04_8S.parentElement.style.display = 'block';
+  } else {
+    cbLB04_8S.checked = false;
+    cbLB04_8S.parentElement.style.display = 'none';
+  }
+});
+
+// Ekran 9
+const cbLB04_9A = document.getElementById('cbLB04_9A');
+const cbLB04_9B = document.getElementById('cbLB04_9B');
+const cbLB04_9C = document.getElementById('cbLB04_9C');
+const cbLB04_9D = document.getElementById('cbLB04_9D');
+const cbLB04_9E = document.getElementById('cbLB04_9E');
+const nextLB04_9 = document.getElementById('nextLB04_9');
+
+cbLB04_9A.addEventListener('change', () => {
+  if (cbLB04_9A.checked) {
+    cbLB04_9B.parentElement.style.display = 'block';
+  } else {
+    cbLB04_9B.checked = false;
+    cbLB04_9C.checked = false;
+    cbLB04_9D.checked = false;
+    cbLB04_9E.checked = false;
+    cbLB04_9B.parentElement.style.display = 'none';
+    cbLB04_9C.parentElement.style.display = 'none';
+    cbLB04_9D.parentElement.style.display = 'none';
+    cbLB04_9E.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_9B.addEventListener('change', () => {
+  if (cbLB04_9B.checked) {
+    cbLB04_9C.parentElement.style.display = 'block';
+  } else {
+    cbLB04_9C.checked = false;
+    cbLB04_9D.checked = false;
+    cbLB04_9E.checked = false;
+    cbLB04_9C.parentElement.style.display = 'none';
+    cbLB04_9D.parentElement.style.display = 'none';
+    cbLB04_9E.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_9C.addEventListener('change', () => {
+  if (cbLB04_9C.checked) {
+    cbLB04_9D.parentElement.style.display = 'block';
+  } else {
+    cbLB04_9D.checked = false;
+    cbLB04_9E.checked = false;
+    cbLB04_9D.parentElement.style.display = 'none';
+    cbLB04_9E.parentElement.style.display = 'none';
+  }
+});
+
+cbLB04_9D.addEventListener('change', () => {
+  if (cbLB04_9D.checked) {
+    cbLB04_9E.parentElement.style.display = 'block';
+  } else {
+    cbLB04_9E.checked = false;
+    cbLB04_9E.parentElement.style.display = 'none';
+  }
+});
+
 
 // === SEKWENCYJNE CHECKBOXY OPCJI 3 ===
 const cb3A = document.getElementById('cb3A');
@@ -464,6 +2169,52 @@ document.getElementById('nextOpt4').onclick = () => {
 
 document.getElementById('nextSerial').onclick = showEndView;
 
+// === LB-04 NAVIGATION ===
+document.getElementById('nextLB04_1').onclick = () => {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('viewLB04_2').classList.add('active');
+};
+
+document.getElementById('nextLB04_2').onclick = () => {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('viewLB04_3').classList.add('active');
+};
+
+document.getElementById('nextLB04_3').onclick = () => {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('viewLB04_4').classList.add('active');
+};
+
+document.getElementById('nextLB04_4').onclick = () => {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('viewLB04_5').classList.add('active');
+};
+
+document.getElementById('nextLB04_5').onclick = () => {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('viewLB04_6').classList.add('active');
+  setTimeout(() => {
+    alert('UWAGA!  Jeżeli w którymś etapie uruchamiania wystąpią nieprawidłowości NATYCHMIAST wyłączyć zasilanie !!!');
+  }, 100);
+};
+
+document.getElementById('nextLB04_6').onclick = () => {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('viewLB04_7').classList.add('active');
+};
+
+document.getElementById('nextLB04_7').onclick = () => {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('viewLB04_8').classList.add('active');
+};
+
+document.getElementById('nextLB04_8').onclick = () => {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('viewLB04_9').classList.add('active');
+};
+
+document.getElementById('nextLB04_9').onclick = showEndView;
+
 /* RAPORT */
 function showEndView() {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -484,39 +2235,96 @@ function showEndView() {
     }));
   } else if (selectedGroup === 'viewOpt4') {
     checkboxes = document.querySelectorAll('.cbOpt4');
+  }else if (selectedGroup === 'viewLB04_1') {
+    // Zbierz checkboxy ze wszystkich 9 ekranów LB-04 z nazwami ekranów
+    const screenNames = {
+      'cbLB04_1': 'Przygotowanie stanowiska',
+      'cbLB04_2': 'Podłączenie szafy sterowania do symulatora',
+      'cbLB04_3': 'Podłączenie wciągarki i UPS',
+      'cbLB04_4': 'Podłączenie kasety jazdy kontrolnej',
+      'cbLB04_5': 'Podłączenie panela i kasety wezwań',
+      'cbLB04_6': 'Uruchamianie',
+      'cbLB04_7': 'Programowanie',
+      'cbLB04_8': 'Sprawdzanie',
+      'cbLB04_9': 'Zakończenie kontroli'
+    };
+    
+    checkboxes = [];
+    for (let i = 1; i <= 9; i++) {
+      const screenClass = `.cbLB04_${i}`;
+      const screenCheckboxes = document.querySelectorAll(screenClass);
+      if (screenCheckboxes.length > 0) {
+        checkboxes.push({
+          screenName: screenNames[`cbLB04_${i}`],
+          items: Array.from(screenCheckboxes)
+        });
+      }
+    }
   }
 
   let html = `<strong>Wybrana opcja:</strong> ${selectedStartOption}<br><br><ul>`;
   
-checkboxes.forEach(cb => {
-  if (cb.hasOwnProperty('checked') && cb.hasOwnProperty('label')) {
-    // Opcja 3 – obiekt z id i checked
-    html += `<li class="${cb.checked ? 'ok' : 'nok'}">
-      ${cb.checked ? '✔' : '✖'} ${cb.label}
-    </li>`;
-  } else {
-    // pozostałe opcje – DOM input checkbox
-    html += `<li class="${cb.checked ? 'ok' : 'nok'}">
-      ${cb.checked ? '✔' : '✖'} ${cb.parentElement.textContent.trim()}
-    </li>`;
+if (selectedGroup === 'viewLB04_1') {
+  // Specjalna obsługa dla LB-04 - pokaż tylko niezaznaczone pozycje + OK dla kompletnych
+  let hasUnchecked = false;
+  
+  checkboxes.forEach(screen => {
+    const uncheckedItems = screen.items.filter(cb => !cb.checked);
+    
+    if (uncheckedItems.length > 0) {
+      hasUnchecked = true;
+      html += `<h3 style="margin-top:20px; color:#007BFF;">${screen.screenName}</h3><ul>`;
+      uncheckedItems.forEach(cb => {
+        html += `<li class="nok">
+          ✖ ${cb.parentElement.textContent.trim()}
+        </li>`;
+      });
+      html += `</ul>`;
+    } else {
+      // Wszystkie checkboxy zaznaczone - pokaż OK
+      html += `<h3 style="margin-top:20px; color:#007BFF;">${screen.screenName}</h3>`;
+      html += `<p style="color:green; font-weight:bold; margin-left:20px;">✔ OK</p>`;
+    }
+  });
+  
+  if (!hasUnchecked) {
+    html += `<br><p style="color:green; font-size:18px; font-weight:bold;">✔ Wszystkie pozycje zostały sprawdzone!</p>`;
   }
-});
+  
+} else {
+  // Standardowa obsługa dla innych opcji - pokaż wszystkie
+  html += `<ul>`;
+  checkboxes.forEach(cb => {
+    if (cb.hasOwnProperty('checked') && cb.hasOwnProperty('label')) {
+      // Opcja 3 – obiekt z id i checked
+      html += `<li class="${cb.checked ? 'ok' : 'nok'}">
+        ${cb.checked ? '✔' : '✖'} ${cb.label}
+      </li>`;
+    } else {
+      // pozostałe opcje – DOM input checkbox
+      html += `<li class="${cb.checked ? 'ok' : 'nok'}">
+        ${cb.checked ? '✔' : '✖'} ${cb.parentElement.textContent.trim()}
+      </li>`;
+    }
+  });
+  html += `</ul>`;
+}
 
   if (selectedGroup === 'viewOpt4') {
-  const fields = document.querySelectorAll('.serialField');
-  const values = [...fields]
-    .map(f => f.value.trim())
-    .filter(v => v);
+    const fields = document.querySelectorAll('.serialField');
+    const values = [...fields]
+      .map(f => f.value.trim())
+      .filter(v => v);
 
-  if (values.length) {
-    html += `<br><strong>Numery seryjne modułów:</strong><br>`;
-    values.forEach(v => {
-      html += `${v}<br>`;
-    });
+    if (values.length) {
+      html += `<br><strong>Numery seryjne modułów:</strong><br>`;
+      values.forEach(v => {
+        html += `${v}<br>`;
+      });
+    }
   }
-}
   
-  html += `</ul><br><strong>Zatwierdził:</strong> ${loggedUser}`;
+  html += `<br><strong>Zatwierdził:</strong> ${loggedUser}`;
   document.getElementById('report').innerHTML = html;
 }
 
