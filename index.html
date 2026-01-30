@@ -96,7 +96,7 @@ button:disabled { background-color: #aaa; }
   <div class="center-text">
     <img src="https://www.lift.pl/images/logo.png" style="max-width:100%; margin-bottom:20px;">
   </div>
-  <div class="center-text">Zaczynamy</div>
+  <div class="center-text">Zaczynamy v1</div>
   <div class="center-text">Wybierz jedną opcję:</div>
   <div class="checkbox-group" style="background:#e0e0e0;">
     <label><input type="checkbox" class="startOption" data-target="viewOpt1"> Opcja 1</label><br>
@@ -2391,53 +2391,56 @@ function renderPdfReport(data) {
   doc.text(`Data: ${now.toLocaleString('pl-PL')}`, 20, yPos);
   yPos += 15;
 
-  // Ekrany i checkboxy
-  data.screens.forEach(screen => {
-    checkPageBreak(15);
-    doc.setFontSize(14);
-    doc.text(screen.name, 20, yPos);
-    yPos += 8;
+// Ekrany i checkboxy
+data.screens.forEach(screen => {
+  checkPageBreak(15);
+  doc.setFontSize(14);
+  doc.text(screen.name, 20, yPos);
+  yPos += 8;
 
-    doc.setFontSize(10);
+  doc.setFontSize(10);
 
-    if (selectedGroup === 'viewLB04_1') {
-      // LB04: jeśli wszystkie zaznaczone
-      if (screen.allChecked) {
-        doc.setTextColor(0, 128, 0); // zielony
-        doc.text('OK', 25, yPos);
-        yPos += 8;
-        doc.setTextColor(0, 0, 0);
-      } else {
-        // tylko niezaznaczone w czerwonym
-        screen.items.forEach(item => {
-  const lines = doc.splitTextToSize(`NIE - ${item.text}`, 160);
-  doc.setTextColor(255, 0, 0); // ustaw raz przed rysowaniem linii
-  lines.forEach(line => {
-    checkPageBreak(6);
-    doc.text(line, 25, yPos);
-    yPos += 6;
-  });
-  doc.setTextColor(0, 0, 0); // przywróć po całym checkboxie
-});
-        yPos += 4;
-      }
+  if (selectedGroup === 'viewLB04_1') {
+    // Ustaw font raz
+    doc.setFont("DejaVu");
+
+    if (screen.allChecked) {
+      doc.setTextColor(0, 128, 0); // zielony
+      doc.text('OK', 25, yPos);
+      yPos += 8;
     } else {
-      // pozostałe grupy: każdy checkbox indywidualnie
+      doc.setTextColor(255, 0, 0); // czerwony
       screen.items.forEach(item => {
-        const prefix = item.checked ? 'OK - ' : 'NIE - ';
-        const lines = doc.splitTextToSize(prefix + item.text, 160);
-        lines.forEach(line => {
-          checkPageBreak(6);
-          if (item.checked) doc.setTextColor(0, 128, 0);
-          else doc.setTextColor(255, 0, 0);
-          doc.text(line, 25, yPos);
-          yPos += 6;
-          doc.setTextColor(0, 0, 0);
-        });
+        if (!item.checked) { // tylko NIE
+          const lines = doc.splitTextToSize(`NIE - ${item.text}`, 160);
+          lines.forEach(line => {
+            checkPageBreak(6);
+            doc.text(line, 25, yPos);
+            yPos += 6;
+          });
+        }
       });
-      yPos += 4;
     }
-  });
+
+    doc.setTextColor(0, 0, 0); // przywróć kolor po całym ekranie
+  } else {
+    // pozostałe grupy: każdy checkbox indywidualnie
+    screen.items.forEach(item => {
+      const prefix = item.checked ? 'OK - ' : 'NIE - ';
+      const lines = doc.splitTextToSize(prefix + item.text, 160);
+      if (item.checked) doc.setTextColor(0, 128, 0);
+      else doc.setTextColor(255, 0, 0);
+      lines.forEach(line => {
+        checkPageBreak(6);
+        doc.text(line, 25, yPos);
+        yPos += 6;
+      });
+      doc.setTextColor(0, 0, 0);
+    });
+  }
+
+  yPos += 4;
+});
 
   // Numery seryjne
   if (data.serialNumbers && data.serialNumbers.length) {
