@@ -2355,6 +2355,7 @@ function renderPdfReport(data) {
   doc.addFileToVFS("DejaVuSans.ttf", DEJAVU_SANS);
   doc.addFont("DejaVuSans.ttf", "DejaVu", "normal");
   doc.setFont("DejaVu");
+  doc.setTextColor(0, 0, 0); // domyślny kolor
 
   const now = new Date();
   const dateStr =
@@ -2409,15 +2410,15 @@ function renderPdfReport(data) {
       } else {
         // tylko niezaznaczone w czerwonym
         screen.items.forEach(item => {
-          const lines = doc.splitTextToSize(`NIE - ${item.text}`, 160);
-          lines.forEach(line => {
-            checkPageBreak(6);
-            doc.setTextColor(255, 0, 0);
-            doc.text(line, 25, yPos);
-            yPos += 6;
-          });
-          doc.setTextColor(0, 0, 0);
-        });
+  const lines = doc.splitTextToSize(`NIE - ${item.text}`, 160);
+  doc.setTextColor(255, 0, 0); // ustaw raz przed rysowaniem linii
+  lines.forEach(line => {
+    checkPageBreak(6);
+    doc.text(line, 25, yPos);
+    yPos += 6;
+  });
+  doc.setTextColor(0, 0, 0); // przywróć po całym checkboxie
+});
         yPos += 4;
       }
     } else {
